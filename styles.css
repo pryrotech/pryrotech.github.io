@@ -1,17 +1,3 @@
-h1{
-    color: blue;
-    font-family: verdana;
-    }
-p{
-    color: blue;
-    font-family: verdana;  
-}
-
-.topnav {
-  background-color: #d6d6c2;
-  overflow: hidden;
-}
-
 /* Style the links inside the navigation bar */
 .topnav a {
   float: left;
