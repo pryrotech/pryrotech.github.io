@@ -14,13 +14,15 @@ body {
   font-family:  Helvetica, sans-serif;
   font-family: 'Michroma', sans-serif;
   height:1000px;
+
 }
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: #0066cc;
+  height: 100px;
 }
 
 li {
@@ -84,44 +86,23 @@ li.dropdown {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-
-    -webkit-animation: myfirst 5s ; /* Chrome, Safari, Opera */
-    animation: myfirst 5s ;
-  }
-
-  /* Chrome, Safari, Opera */
-  @-webkit-keyframes myfirst {
-    from {opacity: 0.2;}
-    to {opacity: 1;}
-  }
-
-  /* Standard syntax */
-  @keyframes myfirst {
-    from {opacity: 0.2;}
-    to {opacity: 1;}
-  }
+}
 </style>
 
 </head>
-<body style="background-color:white;">
+<body>
   <ul>
-    <li><a href="#home">Home</a></li>
-    <li><a href="#news">News</a></li>
     <li class="dropdown">
-      <a href="javascript:void(0)" class="dropbtn">Dropdown</a>
+      <a href="javascript:void(0)" class="dropbtn"><img src="hamburger.jpg"  height="90"></a>
       <div class="dropdown-content">
-        <a href="#">Link 1</a>
-        <a href="#">Link 2</a>
-        <a href="#">Link 3</a>
+        <a href="#">Home</a>
+        <a href="#">Projects </a>
+        <a href="#">About </a>
       </div>
     </li>
   </ul>
 <div id="bg">
-  <div style = "position:static; left:503px; color:white;">
-  <h1 style="font-size: 60px;">Welcome!</h1>
-  <p style="font-size: 15px; position:fixed; left:260px; top: 500px;">Greetings! This is my personal website to highlight a little
-  bit about myself, along with my work. <br><p style="font-size: 15px; position:fixed; left:460px; top: 530px;"><b>Please feel free to look around and reach out to me!</b></p>
-  <p style="font-size: 15px; position:fixed; left:400px; top: 570px;color:red"><strong>Note: This page is under renovation, please don't mind the mess.</p>
+  <div style = "position:static; left:503px;color:white;">
 </div>
 </div> <!-- end bg -->
 <link href="https://fonts.googleapis.com/css?family=Michroma" rel="stylesheet" type="text/css">
