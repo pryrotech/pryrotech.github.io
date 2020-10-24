@@ -1,468 +1,98 @@
 <!DOCTYPE html>
-    <html>
-        <style>
+<html>
+<head>
+<title>HOME | Colby Pryor</title>
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<style>
+html{
+  max-zoom:110%;
+  min-zoom:110%;
+}
+body { 
+  overflow: hidden;
+  margin: 0;
+  font-family:  Helvetica, sans-serif;
+  font-family: 'Michroma', sans-serif;
+  height:1000px;
+}
 
+.topnav {
+  overflow: hidden;
+  background-color: rgb(141, 137, 137);
+}
 
-      html {
-        height: 100%;
-        width: 100%;
-      }
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 21px 40px;
+  text-decoration: none;
+  font-size: 17px;
+}
 
-      body {
-        font-family: 'Open Sans', serif;
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        width: 100;
-        -webkit-font-smoothing: antialiased;
-        overflow: -moz-scrollbars-none;
-        -ms-overflow-style: none;
-        text-decoration: none;
-      }
-a:link {
+.topnav a:hover {
+  background-color: #ddd;
   color: black;
 }
-a:visited {
-  color: black;
+
+.topnav a.active {
+  background-color: #404440;
+  color: white;
 }
-a:hover {
-  color: grey;
+#content {
+    position: relative;
 }
-a:active { 
-  color: grey;
-}
-.code {
+#content img {
+  
     position: absolute;
-    -webkit-transform: rotate(0.00deg);
-    transform: rotate(0.00deg);
-    -ms-transform-origin: center;
-    -webkit-transform-origin: center;
-    transform-origin: center;
-    background-image: url("assets/code.png");
-    background-position: fill;
-    background-repeat: no-repeat;
-    background-size:cover;
-    margin: 0 auto;
-    width: 1561.00px;
-    height: 662.00px;
-    left: -111.00px;
-    top: 130.00px;
-    filter: drop-shadow(0px 6px 6px rgba(0, 0, 0, 0.1607843137254902));
-    filter: blur(10px);
-    -webkit-filter: blur(10px);
-    object-fit:cover;
-
+    top: -17px;
+    right: -80px;
 }
+#bg {
+    width: 100%;
+    height: 100%;
+    background: url('code.jpg') no-repeat center center fixed;
 
-.wELCOMEgreetingsThisIsMyPersonalWebsiteToHighlightALittleBitAboutMyselfAlongWithMyWorkPleaseFeelFreeToLookAroundAndReachOutToMe {
-    position: absolute;
-      box-sizing: content-box;
-      -ms-transform: rotate(0.00deg);
-    -webkit-transform: rotate(0.00deg);
-    transform: rotate(0.00deg);
-    -ms-transform-origin: center;
-    -webkit-transform-origin: center;
-    transform-origin: center;
-      opacity: 1;
-      cursor: default;
-      margin-top: 0.00px;
-      margin-right: 0.00px;
-      margin-bottom: 0.00px;
-      margin-left: 0.00px;
-      padding-top: 0.00px;
-      padding-right: 0.00px;
-      padding-bottom: 0.00px;
-      padding-left: 0.00px;
-      background-color: rgba(255, 255, 255, 0);
-      text-align: center;
-      letter-spacing: 0.00px;
-      color: rgb(255, 240, 25);
-      -webkit-text-stroke: 1.00px rgba(0, 0, 0, 0);
-      font-size: 50.00px;
-      font-weight: 700;
-    font-style: normal;
-      font-family: 'Trebuchet MS', Arial;
-      text-decoration: none;
-      -webkit-filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.1607843137254902));
-    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.1607843137254902));
-      overflow-x: auto;
-      overflow-y: auto;
-      width: 1085.00px;
-    height: 434.00px;
-    left: 127.00px;
-    top: 349.00px;
-
-}
-
-.wELCOMEgreetingsThisIsMyPersonalWebsiteToHighlightALittleBitAboutMyselfAlongWithMyWorkPleaseFeelFreeToLookAroundAndReachOutToMe .wELCOMEgreetingsThisIsMyPersonalWebsiteToHighlightALittleBitAboutMyselfAlongWithMyWorkPleaseFeelFreeToLookAroundAndReachOutToMe-0 {
-    color: rgb(255, 255, 255);
-    font-weight: 700;
-    font-style: normal;
-    font-size: 150.00px;
-    font-family: 'Trebuchet MS', Arial;
-    letter-spacing: 0;
-    text-decoration: none;
-    top: 750px;
-}
-
-.wELCOMEgreetingsThisIsMyPersonalWebsiteToHighlightALittleBitAboutMyselfAlongWithMyWorkPleaseFeelFreeToLookAroundAndReachOutToMe .wELCOMEgreetingsThisIsMyPersonalWebsiteToHighlightALittleBitAboutMyselfAlongWithMyWorkPleaseFeelFreeToLookAroundAndReachOutToMe-14 {
-    color: rgba(255, 255, 255, 1);
-    font-weight: 700;
-    font-style: normal;
-    font-size: 50.00px;
-    font-family: 'Trebuchet MS', Arial;
-    letter-spacing: 0;
-    text-decoration: none;
-    top: 750px;
-}
-
-.colbyPryor {
-    position: absolute;
-      box-sizing: content-box;
-      -ms-transform: rotate(0.00deg);
-    -webkit-transform: rotate(0.00deg);
-    transform: rotate(0.00deg);
-    -ms-transform-origin: center;
-    -webkit-transform-origin: center;
-    transform-origin: center;
-      opacity: 1;
-      cursor: default;
-      margin-top: 0.00px;
-      margin-right: 0.00px;
-      margin-bottom: 0.00px;
-      margin-left: 0.00px;
-      padding-top: 0.00px;
-      padding-right: 0.00px;
-      padding-bottom: 0.00px;
-      padding-left: 0.00px;
-      background-color: rgba(255, 255, 255, 0);
-      text-align: left;
-      letter-spacing: 0.00px;
-      color: rgba(0, 0, 0, 1);
-      -webkit-text-stroke: 1.00px rgba(0, 0, 0, 0);
-      font-size: 40.00px;
-      font-weight: 400;
-    font-style: normal;
-      font-family: Michroma, Arial;
-      text-decoration: none;
-      -webkit-filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.5607843137254902));
-    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.5607843137254902));
-      overflow-x: auto;
-      overflow-y: auto;
-      width: 504.00px;
-    height: 112.00px;
-    left: 41.00px;
-    top: 28.00px;
-
-}
-
-.line1 {
-
-  position: static;
-  box-sizing: content-box;
-  -ms-transform: rotate(0.00deg);
-  -webkit-transform: rotate(0.00deg);
-  transform: rotate(0.00deg);
-  -ms-transform-origin: center;
-  -webkit-transform-origin: center;
-  transform-origin: center;
-  opacity: 1;
-  cursor: default;
-  margin-top: 0.00px;
-  margin-right: 0.00px;
-  margin-bottom: 0.00px;
-  margin-left: 0.00px;
-  padding-top: 0.00px;
-  padding-right: 0.00px;
-  padding-bottom: 0.00px;
-  padding-left: 0.00px;
-  stroke: rgba(0, 0, 0, 1);
-  stroke-width: 7.00px;
-  stroke-linecap: butt;
-  box-shadow: none;
-  width: auto;
-  height: 7.00px;
-  left: -139.50px;
-  top: 112.00px;
-
-}
-
-.image1 {
-    position: absolute;
-      box-sizing: content-box;
-      -ms-transform: rotate(0.00deg);
-    -webkit-transform: rotate(0.00deg);
-    transform: rotate(0.00deg);
-    -ms-transform-origin: center;
-    -webkit-transform-origin: center;
-    transform-origin: center;
-      background-image: url("assets/image1.png");
-    background-position: center;
-    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
-      opacity: 1;
-      cursor: default;
-      margin-top: 0.00px;
-      margin-right: 0.00px;
-      margin-bottom: 0.00px;
-      margin-left: 0.00px;
-      padding-top: 0.00px;
-      padding-right: 10.00px;
-      padding-bottom: 0.00px;
-      padding-left: 0.00px;
-      background-color: rgba(255, 255, 255, 0);
-      border-bottom-color: rgba(112, 112, 112, 1);
-      border-bottom-style: none;
-      border-bottom-width: 1.00px;
-      border-left-color: rgba(112, 112, 112, 1);
-      border-left-style: none;
-      border-left-width: 1.00px;
-      border-right-color: rgba(112, 112, 112, 1);
-      border-right-style: none;
-      border-right-width: 1.00px;
-      border-top-color: rgba(112, 112, 112, 1);
-      border-top-style: none;
-      border-top-width: 1.00px;
-      border-top-left-radius: 0.00px;
-      border-top-right-radius: 0.00px;
-      border-bottom-left-radius: 0.00px;
-      border-bottom-right-radius: 0.00px;
-      box-shadow: none;
-      width: 181.00px;
-    height: 95.00px;
-    left: 950.00px;
-    top: 9.00px;
 
-}
-.image2 {
-    position: absolute;
-      box-sizing: content-box;
-      -ms-transform: rotate(0.00deg);
-    -webkit-transform: rotate(0.00deg);
-    transform: rotate(0.00deg);
-    -ms-transform-origin: center;
-    -webkit-transform-origin: center;
-    transform-origin: center;
-      background-image: url("assets/image2.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-      opacity: 1;
-      cursor: default;
-      margin-top: 0.00px;
-      margin-right: 0.00px;
-      margin-bottom: 0.00px;
-      margin-left: 0.00px;
-      padding-top: 0.00px;
-      padding-right: 10.00px;
-      padding-bottom: 0.00px;
-      padding-left: 0.00px;
-      background-color: rgba(255, 255, 255, 0);
-      border-bottom-color: rgba(112, 112, 112, 1);
-      border-bottom-style: none;
-      border-bottom-width: 1.00px;
-      border-left-color: rgba(112, 112, 112, 1);
-      border-left-style: none;
-      border-left-width: 1.00px;
-      border-right-color: rgba(112, 112, 112, 1);
-      border-right-style: none;
-      border-right-width: 1.00px;
-      border-top-color: rgba(112, 112, 112, 1);
-      border-top-style: none;
-      border-top-width: 1.00px;
-      border-top-left-radius: 0.00px;
-      border-top-right-radius: 0.00px;
-      border-bottom-left-radius: 0.00px;
-      border-bottom-right-radius: 0.00px;
-      box-shadow: none;
-    width: 10000.00px;
-    height: 95.00px;
-    left: 1070.00px;
-    top: 2.00px;
+    -webkit-animation: myfirst 5s ; /* Chrome, Safari, Opera */
+    animation: myfirst 5s ;
+  }
 
-}
-.image3 {
-    position: absolute;
-      box-sizing: content-box;
-      -ms-transform: rotate(0.00deg);
-    -webkit-transform: rotate(0.00deg);
-    transform: rotate(0.00deg);
-    -ms-transform-origin: center;
-    -webkit-transform-origin: center;
-    transform-origin: center;
-      background-image: url("assets/image2.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-      opacity: 1;
-      cursor: default;
-      margin-top: 0.00px;
-      margin-right: 0.00px;
-      margin-bottom: 0.00px;
-      margin-left: 0.00px;
-      padding-top: 0.00px;
-      padding-right: 10.00px;
-      padding-bottom: 0.00px;
-      padding-left: 0.00px;
-      background-color: rgba(255, 255, 255, 0);
-      border-bottom-color: rgba(112, 112, 112, 1);
-      border-bottom-style: none;
-      border-bottom-width: 1.00px;
-      border-left-color: rgba(112, 112, 112, 1);
-      border-left-style: none;
-      border-left-width: 1.00px;
-      border-right-color: rgba(112, 112, 112, 1);
-      border-right-style: none;
-      border-right-width: 1.00px;
-      border-top-color: rgba(112, 112, 112, 1);
-      border-top-style: none;
-      border-top-width: 1.00px;
-      border-top-left-radius: 0.00px;
-      border-top-right-radius: 0.00px;
-      border-bottom-left-radius: 0.00px;
-      border-bottom-right-radius: 0.00px;
-      box-shadow: none;
-    width: 10000.00px;
-    height: 95.00px;
-    left: 1175.00px;
-    top: 10.00px;
+  /* Chrome, Safari, Opera */
+  @-webkit-keyframes myfirst {
+    from {opacity: 0.2;}
+    to {opacity: 1;}
+  }
 
-}
+  /* Standard syntax */
+  @keyframes myfirst {
+    from {opacity: 0.2;}
+    to {opacity: 1;}
+  }
+</style>
 
-.home {
-    position: absolute;
-      box-sizing: content-box;
-      -ms-transform: rotate(0.00deg);
-    -webkit-transform: rotate(0.00deg);
-    transform: rotate(0.00deg);
-    -ms-transform-origin: center;
-    -webkit-transform-origin: center;
-    transform-origin: center;
-      opacity: 1;
-      cursor: default;
-      margin-top: 0.00px;
-      margin-right: 0.00px;
-      margin-bottom: 0.00px;
-      margin-left: 0.00px;
-      padding-top: 0.00px;
-      padding-right: 0.00px;
-      padding-bottom: 0.00px;
-      padding-left: 0.00px;
-      background-color: rgba(255, 255, 255, 0);
-      text-align: left;
-      letter-spacing: 0.00px;
-      color: grey;
-      -webkit-text-stroke: 1.00px grey;
-      font-size: 40.00px;
-      font-weight: 700;
-    font-style: normal;
-      font-family: 'Trebuchet MS', Arial;
-      text-decoration: none;
-      box-shadow: none;
-      overflow-x: unset;
-      overflow-y: unset;
-      width: 132.00px;
-    height: 66.00px;
-    left: 448.00px;
-    top: 38.00px;
-}
-.projects {
-    position: absolute;
-      box-sizing: content-box;
-      -ms-transform: rotate(0.00deg);
-    -webkit-transform: rotate(0.00deg);
-    transform: rotate(0.00deg);
-    -ms-transform-origin: center;
-    -webkit-transform-origin: center;
-    transform-origin: center;
-      opacity: 1;
-      cursor: default;
-      margin-top: 0.00px;
-      margin-right: 0.00px;
-      margin-bottom: 0.00px;
-      margin-left: 0.00px;
-      padding-top: 0.00px;
-      padding-right: 0.00px;
-      padding-bottom: 0.00px;
-      padding-left: 0.00px;
-      background-color: rgba(255, 255, 255, 0);
-      text-align: left;
-      letter-spacing: 0.00px;
-      color: rgba(0, 0, 0, 1);
-      -webkit-text-stroke: 1.00px rgba(0, 0, 0, 0);
-      font-size: 40.00px;
-      font-weight: 700;
-    font-style: normal;
-      font-family: 'Trebuchet MS', Arial;
-      text-decoration: none;
-      box-shadow: none;
-      overflow-x: unset;
-      overflow-y: unset;
-      width: 197.00px;
-    height: 66.00px;
-    left: 589.00px;
-    top: 38.00px;
-
-}
-.about {
-    position: absolute;
-      box-sizing: content-box;
-      -ms-transform: rotate(0.00deg);
-    -webkit-transform: rotate(0.00deg);
-    transform: rotate(0.00deg);
-    -ms-transform-origin: center;
-    -webkit-transform-origin: center;
-    transform-origin: center;
-      opacity: 1;
-      cursor: default;
-      margin-top: 0.00px;
-      margin-right: 0.00px;
-      margin-bottom: 0.00px;
-      margin-left: 0.00px;
-      padding-top: 0.00px;
-      padding-right: 0.00px;
-      padding-bottom: 0.00px;
-      padding-left: 0.00px;
-      background-color: rgba(255, 255, 255, 0);
-      text-align: left;
-      letter-spacing: 0.00px;
-      color: rgba(0, 0, 0, 1);
-      -webkit-text-stroke: 1.00px rgba(0, 0, 0, 0);
-      font-size: 40.00px;
-      font-weight: 700;
-    font-style: normal;
-      font-family: 'Trebuchet MS', Arial;
-      text-decoration: none;
-      box-shadow: none;
-      overflow-x: unset;
-      overflow-y: unset;
-      width: 132.00px;
-    height: 66.00px;
-    left: 806.00px;
-    top: 38.00px;
-
-}
-        </style>
-    <head>
-        <meta charset="utf-8">
-        <title>HOME</title>
-    </head>
-
-    <body>
-        <div data-layer="f1a801a6-475a-499c-9ada-c0983f7e572b" class="web19201">        <div data-layer="0c91fbc4-755e-4ce4-8b91-0b4251e2f034" class="code"></div>
-        <div data-layer="fcccd897-d85c-4ef2-942d-647a748f8f58" class="wELCOMEgreetingsThisIsMyPersonalWebsiteToHighlightALittleBitAboutMyselfAlongWithMyWorkPleaseFeelFreeToLookAroundAndReachOutToMe"><span class="wELCOMEgreetingsThisIsMyPersonalWebsiteToHighlightALittleBitAboutMyselfAlongWithMyWorkPleaseFeelFreeToLookAroundAndReachOutToMe-0">W E L C O M E<br /></span><span class="wELCOMEgreetingsThisIsMyPersonalWebsiteToHighlightALittleBitAboutMyselfAlongWithMyWorkPleaseFeelFreeToLookAroundAndReachOutToMe-14">Greetings! This is my personal website to highlight a little bit about myself, along with my work. Please feel free to look around and reach out to me!<br /></span></div>
-        <div data-layer="89aad9c6-39a3-4fc2-9490-d1bb298a08d8" class="colbyPryor">Colby Pryor<br /> </div>
-        <svg data-layer="f3387f9d-05dc-4146-87fc-8a20d6b47308" preserveAspectRatio="none" viewBox="0 -3.5 2116 7" class="line1"><path d="M 2116 0 L 0 0"  /></svg>
-        <div class="image1"><a href="https://github.com/pryrotech"><img src="image1.png" width="155" height="73"></a></div>
-        <div class="image2"><a href="https://instagram.com/pryro.tech"><img src="image2.png" width="100" height="86"></a></div>
-        <div class="image3"><a href="https://instagram.com/pryro.tech"><img src="image3.png" width="90" height="75"></a></div>
-        <div  class="home"><a style="text-decoration: none"  href="https://pryrotech.github.io">HOME</a></div>
-        <div class="projects"><a style="text-decoration: none"  href="https://pryrotech.github.io/projects">PROJECTS</a></div>
-        <div class="about"><a style="text-decoration: none"  href="https://pryrotech.github.io/about">ABOUT</a></div>
+</head>
+<body style="background-color:white;">
+<div class="topnav">
+  <a class="active" href="https://pryrotech.github.io"><strong>HOME</strong></a>
+  <a href="https://pryrotech.github.io/projects"><strong>PROJECTS</strong></a>
+  <a href="#contact"><strong>ABOUT</strong></a>
+  <a href="#about"><strong>CONTACT</strong></a>
+</div>
+<div id="bg">
+<div style = "position:fixed; left:503px; top: 400px; color:white;">
+  <h1 style="font-size: 60px;">Welcome!</h1>
+  <p style="font-size: 15px; position:fixed; left:260px; top: 500px;">Greetings! This is my personal website to highlight a little
+  bit about myself, along with my work. <br><p style="font-size: 15px; position:fixed; left:460px; top: 530px;"><b>Please feel free to look around and reach out to me!</b></p>
+  <p style="font-size: 15px; position:fixed; left:400px; top: 570px;color:red"><strong>Note: This page is under renovation, please don't mind the mess.</p>
+</div>
+</div> <!-- end bg -->
+<link href="https://fonts.googleapis.com/css?family=Michroma" rel="stylesheet" type="text/css">
 </div>
 
-
-    
-    </body>
-    </html>
-            
+</body>
+</html> 
