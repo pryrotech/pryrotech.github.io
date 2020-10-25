@@ -38,7 +38,7 @@ li a, .dropbtn {
 }
 
 li a:hover, .dropdown:hover .dropbtn {
-  background-color: red;
+  background-color: blue;
 }
 
 li.dropdown {
@@ -49,7 +49,7 @@ li.dropdown {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 600px;
+  max-width: 300px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   top: 100px;
@@ -79,15 +79,16 @@ li.dropdown {
     right: -80px;
 }
 #bg {
-    width: 100%;
-    height: 100%;
+    position: fixed;
+    width:100%;
+    height:100%;
     background: url('code.jpg') no-repeat center center fixed;
     filter: blur(10px);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-}
+}}
 
 .imgtext {		
 		color: white;
@@ -101,6 +102,7 @@ li.dropdown {
 		-o-transition: all 0.8s ease-in-out;
 		transition: all 0.8s ease-in-out;
 }
+
 
 </style>
 
@@ -117,14 +119,15 @@ li.dropdown {
       </div>
     </li>
   </ul>
+<h1></h1>
 <div id="bg">
-  <div style = "position:static; left:503px;color:white;">
- </span>
-</div>
-</div>
+  </div>
 </div> <!-- end bg -->
+<h1 style="background-image:linear-gradient(to bottom right, white, blue);;color:white;position:sticky;top:400px;right:506px;margin: 0 auto;"><center>Welcome!</center></h1>
+<h1 style="color:white;position:sticky;top:450px;right:506px;margin: 0 auto;"><center>This is my portfolio and CV site, feel free to take a look around!</center></h1>
+<h1 style="color:white;position:sticky;top:510px;right:506px;margin: 0 auto;"><a href="https://github.com/pryrotech"><center><img src= "GitHub-Mark-64px.png"></a></center></h1>
 <link href="https://fonts.googleapis.com/css?family=Michroma" rel="stylesheet" type="text/css">
 </div><!-- end bg -->
 
 </body>
-</html> 
+</html>
