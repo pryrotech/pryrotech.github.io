@@ -1,680 +1,171 @@
 <!DOCTYPE html>
-    <html>
-        <style>
-              html {
-        height: 100%;
-        width: 100%;
-      }
+<html>
+<head>
+<title>ABOUT ME | Colby Pryor</title>
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<style>
+html{
+  min-zoom:100%;
+  max-zoom:110%;
+}
+body { 
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin: 0;
+  font-family:  Helvetica, sans-serif;
+  font-family: 'Michroma', sans-serif;
+  height:1500px;
 
-      body {
-        font-family: 'Open Sans', serif;
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        width: 100%;
-        -webkit-font-smoothing: antialiased;
-        overflow: -moz-scrollbars-none;
-        -ms-overflow-style: none;
-        text-decoration: none;
-        color: black;
-      }
-a:link {
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-image: linear-gradient(to bottom right, black, grey);
+  height: 100px;
+  left: 100px;
+  top: 300px;
+  z-index: 1;
+}
+
+li {
+  float: left;
+}
+
+li a, .dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+  background-color: blue;
+}
+
+li.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  max-width: 300px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  top: 100px;
+}
+
+.dropdown-content a {
   color: black;
-}
-a:visited {
-  color: black;
-}
-a:hover {
-  color: grey;
-}
-a:active { 
-  color: grey;
-}
-.aBOUTME {
-    position: absolute;
-      box-sizing: content-box;
-      -ms-transform: rotate(0.00deg);
-    -webkit-transform: rotate(0.00deg);
-    transform: rotate(0.00deg);
-    -ms-transform-origin: center;
-    -webkit-transform-origin: center;
-    transform-origin: center;
-      opacity: 1;
-      cursor: default;
-      margin-top: 0.00px;
-      margin-right: 0.00px;
-      margin-bottom: 0.00px;
-      margin-left: 0.00px;
-      padding-top: 0.00px;
-      padding-right: 0.00px;
-      padding-bottom: 0.00px;
-      padding-left: 0.00px;
-      background-color: rgba(255, 255, 255, 0);
-      text-align: left;
-      letter-spacing: 0.00px;
-      color: rgba(0, 0, 0, 1);
-      -webkit-text-stroke: 1.00px rgba(0, 0, 0, 0);
-      font-size: 150.00px;
-      font-weight: 700;
-    font-style: normal;
-      font-family: 'Trebuchet MS', Arial;
-      text-decoration: none;
-      -webkit-filter: drop-shadow(0px 60px 38px rgba(0, 0, 0, 0.1607843137254902));
-    filter: drop-shadow(0px 60px 38px rgba(0, 0, 0, 0.1607843137254902));
-      overflow-x: unset;
-      overflow-y: unset;
-      white-space: pre;
-      width: 1028.00px;
-    height: 174.00px;
-    left: 166.00px;
-    top: 187.00px;
-
-}
-a:visited {
-  color: black;
-}
-a:hover {
-  color: grey;
-  transition:ease-in; /* Animation */
-}
-.line2 {
-    position: absolute;
-      box-sizing: content-box;
-      -ms-transform: rotate(0.00deg);
-    -webkit-transform: rotate(0.00deg);
-    transform: rotate(0.00deg);
-    -ms-transform-origin: center;
-    -webkit-transform-origin: center;
-    transform-origin: center;
-      opacity: 1;
-      cursor: default;
-      margin-top: 0.00px;
-      margin-right: 0.00px;
-      margin-bottom: 0.00px;
-      margin-left: 0.00px;
-      padding-top: 0.00px;
-      padding-right: 0.00px;
-      padding-bottom: 0.00px;
-      padding-left: 0.00px;
-      stroke: rgba(112, 112, 112, 1);
-          stroke-width: 1.00px;
-          stroke-linecap: butt;
-      box-shadow: none;
-      width: 1.00px;
-    height: 572.00px;
-    left: 545.00px;
-    top: 473.50px;
-
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
 }
 
-.image4 {
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+#content {
+    position: relative;
+}
+#content img {
+  
     position: absolute;
-      box-sizing: content-box;
-      -ms-transform: rotate(0.00deg);
-    -webkit-transform: rotate(0.00deg);
-    transform: rotate(0.00deg);
-    -ms-transform-origin: center;
-    -webkit-transform-origin: center;
-    transform-origin: center;
-      background-image: url("image4.png");
-    background-position: center;
-    background-repeat: no-repeat;
+    top: -17px;
+    right: -80px;
+}
+#bg {
+    position: sticky;
+    width:100%;
+    height:20%;
+    background: url('colby.jpg') no-repeat center center fixed;
+    filter: blur(10px);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
-      opacity: 1;
-      cursor: default;
-      margin-top: 0.00px;
-      margin-right: 0.00px;
-      margin-bottom: 0.00px;
-      margin-left: 0.00px;
-      padding-top: 0.00px;
-      padding-right: 0.00px;
-      padding-bottom: 0.00px;
-      padding-left: 0.00px;
-      background-color: rgba(255, 255, 255, 0);
-      border-bottom-color: rgba(112, 112, 112, 1);
-      border-bottom-style: none;
-      border-bottom-width: 1.00px;
-      border-left-color: rgba(112, 112, 112, 1);
-      border-left-style: none;
-      border-left-width: 1.00px;
-      border-right-color: rgba(112, 112, 112, 1);
-      border-right-style: none;
-      border-right-width: 1.00px;
-      border-top-color: rgba(112, 112, 112, 1);
-      border-top-style: none;
-      border-top-width: 1.00px;
-      border-top-left-radius: 178.00px;
-      border-top-right-radius: 178.00px;
-      border-bottom-left-radius: 178.00px;
-      border-bottom-right-radius: 178.00px;
-      box-shadow: none;
-      width: 355.00px;
-    height: 355.00px;
-    left: 116.00px;
-    top: 456.00px;
+}}
 
+.imgtext {		
+		color: white;
+		background: rgba(0,0,0,0.6);
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		position: absolute;
+		bottom: 0px;
+		-webkit-transition: all 0.8s ease-in-out;
+		-o-transition: all 0.8s ease-in-out;
+		transition: all 0.8s ease-in-out;
+}
+h1AudioID {
+  font-size: 72px;
+  background: -webkit-linear-gradient(#eee, #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.line {
+  position: relative;
+  top:-1600px;
+  right:-600px;
+  border-left: 6px solid black;
+  height: 790px;
 }
 
-.headOfSoftwareAtAirntellAerospace {
-    position: absolute;
-      box-sizing: content-box;
-      -ms-transform: rotate(0.00deg);
-    -webkit-transform: rotate(0.00deg);
-    transform: rotate(0.00deg);
-    -ms-transform-origin: center;
-    -webkit-transform-origin: center;
-    transform-origin: center;
-      opacity: 1;
-      cursor: default;
-      margin-top: 0.00px;
-      margin-right: 0.00px;
-      margin-bottom: 0.00px;
-      margin-left: 0.00px;
-      padding-top: 0.00px;
-      padding-right: 0.00px;
-      padding-bottom: 0.00px;
-      padding-left: 0.00px;
-      background-color: rgba(255, 255, 255, 0);
-      text-align: center;
-      letter-spacing: 0.00px;
-      color: rgba(0, 0, 0, 1);
-      -webkit-text-stroke: 1.00px rgba(0, 0, 0, 0);
-      font-size: 30.00px;
-      font-weight: 400;
-    font-style: normal;
-      font-family: Michroma, Arial;
-      text-decoration: none;
-      box-shadow: none;
-      overflow-x: unset;
-      overflow-y: unset;
-      width: 435.00px;
-    height: 108.00px;
-    left: 76.00px;
-    top: 867.00px;
-
-}
-
-.colbyPryor74dd1772 {
-    position: absolute;
-      box-sizing: content-box;
-      -ms-transform: rotate(0.00deg);
-    -webkit-transform: rotate(0.00deg);
-    transform: rotate(0.00deg);
-    -ms-transform-origin: center;
-    -webkit-transform-origin: center;
-    transform-origin: center;
-      opacity: 1;
-      cursor: default;
-      margin-top: 0.00px;
-      margin-right: 0.00px;
-      margin-bottom: 0.00px;
-      margin-left: 0.00px;
-      padding-top: 0.00px;
-      padding-right: 0.00px;
-      padding-bottom: 0.00px;
-      padding-left: 0.00px;
-      background-color: rgba(255, 255, 255, 0);
-      text-align: center;
-      letter-spacing: 0.00px;
-      color: rgba(0, 0, 0, 1);
-      -webkit-text-stroke: 1.00px rgba(0, 0, 0, 0);
-      font-size: 40.00px;
-      font-weight: 700;
-    font-style: normal;
-      font-family: 'Trebuchet MS', Arial;
-      text-decoration: none;
-      box-shadow: none;
-      overflow-x: unset;
-      overflow-y: unset;
-      width: 435.00px;
-    height: 65.00px;
-    left: 76.00px;
-    top: 822.00px;
-
-}
-
-.image5 {
-    position: absolute;
-      box-sizing: content-box;
-      -ms-transform: rotate(0.00deg);
-    -webkit-transform: rotate(0.00deg);
-    transform: rotate(0.00deg);
-    -ms-transform-origin: center;
-    -webkit-transform-origin: center;
-    transform-origin: center;
-      background-image: url("image5.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-      opacity: 1;
-      cursor: default;
-      margin-top: 0.00px;
-      margin-right: 0.00px;
-      margin-bottom: 0.00px;
-      margin-left: 0.00px;
-      padding-top: 0.00px;
-      padding-right: 0.00px;
-      padding-bottom: 0.00px;
-      padding-left: 0.00px;
-      background-color: rgba(255, 255, 255, 0);
-      border-bottom-color: rgba(112, 112, 112, 1);
-      border-bottom-style: none;
-      border-bottom-width: 1.00px;
-      border-left-color: rgba(112, 112, 112, 1);
-      border-left-style: none;
-      border-left-width: 1.00px;
-      border-right-color: rgba(112, 112, 112, 1);
-      border-right-style: none;
-      border-right-width: 1.00px;
-      border-top-color: rgba(112, 112, 112, 1);
-      border-top-style: none;
-      border-top-width: 1.00px;
-      border-top-left-radius: 0.00px;
-      border-top-right-radius: 0.00px;
-      border-bottom-left-radius: 0.00px;
-      border-bottom-right-radius: 0.00px;
-      box-shadow: none;
-      width: 272.00px;
-    height: 122.00px;
-    left: 157.00px;
-    top: 955.00px;
-
-}
-
-.bornInOntarioColbyGrewUpFascinatedInComputersAndTechnologyHeVividlyRemembersBeingInspiredByHisFathersLoveForElectronicsWhichStemmedHisInterestInComputerScienceWhenColbyWasFiveHisFamilyBoughtTheirFirstDesktop {
-    position: absolute;
-      box-sizing: content-box;
-      -ms-transform: rotate(0.00deg);
-    -webkit-transform: rotate(0.00deg);
-    transform: rotate(0.00deg);
-    -ms-transform-origin: center;
-    -webkit-transform-origin: center;
-    transform-origin: center;
-      opacity: 1;
-      cursor: default;
-      margin-top: 0.00px;
-      margin-right: 0.00px;
-      margin-bottom: 0.00px;
-      margin-left: 0.00px;
-      padding-top: 0.00px;
-      padding-right: 0.00px;
-      padding-bottom: 0.00px;
-      padding-left: 0.00px;
-      background-color: rgba(255, 255, 255, 0);
-      text-align: left;
-      letter-spacing: 0.00px;
-      color: rgba(0, 0, 0, 1);
-      -webkit-text-stroke: 1.00px rgba(0, 0, 0, 0);
-      font-size: 20.00px;
-      font-weight: 400;
-    font-style: normal;
-      font-family: Michroma, Arial;
-      text-decoration: none;
-      box-shadow: none;
-      overflow-x: unset;
-      overflow-y: unset;
-      width: 1169.00px;
-    height: 804.00px;
-    left: 567.00px;
-    top: 486.00px;
-
-}
-
- .colbyPryor {
-    position: absolute;
-      box-sizing: content-box;
-      -ms-transform: rotate(0.00deg);
-    -webkit-transform: rotate(0.00deg);
-    transform: rotate(0.00deg);
-    -ms-transform-origin: center;
-    -webkit-transform-origin: center;
-    transform-origin: center;
-      opacity: 1;
-      cursor: default;
-      margin-top: 0.00px;
-      margin-right: 0.00px;
-      margin-bottom: 0.00px;
-      margin-left: 0.00px;
-      padding-top: 0.00px;
-      padding-right: 0.00px;
-      padding-bottom: 0.00px;
-      padding-left: 0.00px;
-      background-color: rgba(255, 255, 255, 0);
-      text-align: left;
-      letter-spacing: 0.00px;
-      color: rgba(0, 0, 0, 1);
-      -webkit-text-stroke: 1.00px rgba(0, 0, 0, 0);
-      font-size: 40.00px;
-      font-weight: 400;
-    font-style: normal;
-      font-family: Michroma, Arial;
-      text-decoration: none;
-      -webkit-filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.5607843137254902));
-    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.5607843137254902));
-      overflow-x: auto;
-      overflow-y: auto;
-      width: 504.00px;
-    height: 112.00px;
-    left: 41.00px;
-    top: 28.00px;
-
-}
-
-.line1 {
-    position: absolute;
-      box-sizing: content-box;
-      -ms-transform: rotate(0.00deg);
-    -webkit-transform: rotate(0.00deg);
-    transform: rotate(0.00deg);
-    -ms-transform-origin: center;
-    -webkit-transform-origin: center;
-    transform-origin: center;
-      opacity: 1;
-      cursor: default;
-      margin-top: 0.00px;
-      margin-right: 0.00px;
-      margin-bottom: 0.00px;
-      margin-left: 0.00px;
-      padding-top: 0.00px;
-      padding-right: 0.00px;
-      padding-bottom: 0.00px;
-      padding-left: 0.00px;
-      stroke: rgba(0, 0, 0, 1);
-          stroke-width: 7.00px;
-          stroke-linecap: butt;
-      box-shadow: none;
-      width: 2116.00px;
-    height: 7.00px;
-    left: -139.50px;
-    top: 112.00px;
-
-}
-.image1 {
-    position: absolute;
-      box-sizing: content-box;
-      -ms-transform: rotate(0.00deg);
-    -webkit-transform: rotate(0.00deg);
-    transform: rotate(0.00deg);
-    -ms-transform-origin: center;
-    -webkit-transform-origin: center;
-    transform-origin: center;
-      background-image: url("assets/image1.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-      opacity: 1;
-      cursor: default;
-      margin-top: 0.00px;
-      margin-right: 0.00px;
-      margin-bottom: 0.00px;
-      margin-left: 0.00px;
-      padding-top: 0.00px;
-      padding-right: 10.00px;
-      padding-bottom: 0.00px;
-      padding-left: 0.00px;
-      background-color: rgba(255, 255, 255, 0);
-      border-bottom-color: rgba(112, 112, 112, 1);
-      border-bottom-style: none;
-      border-bottom-width: 1.00px;
-      border-left-color: rgba(112, 112, 112, 1);
-      border-left-style: none;
-      border-left-width: 1.00px;
-      border-right-color: rgba(112, 112, 112, 1);
-      border-right-style: none;
-      border-right-width: 1.00px;
-      border-top-color: rgba(112, 112, 112, 1);
-      border-top-style: none;
-      border-top-width: 1.00px;
-      border-top-left-radius: 0.00px;
-      border-top-right-radius: 0.00px;
-      border-bottom-left-radius: 0.00px;
-      border-bottom-right-radius: 0.00px;
-      box-shadow: none;
-      width: 181.00px;
-    height: 95.00px;
-    left: 950.00px;
-    top: 9.00px;
-
-}
-.image2 {
-    position: absolute;
-      box-sizing: content-box;
-      -ms-transform: rotate(0.00deg);
-    -webkit-transform: rotate(0.00deg);
-    transform: rotate(0.00deg);
-    -ms-transform-origin: center;
-    -webkit-transform-origin: center;
-    transform-origin: center;
-      background-image: url("assets/image2.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-      opacity: 1;
-      cursor: default;
-      margin-top: 0.00px;
-      margin-right: 0.00px;
-      margin-bottom: 0.00px;
-      margin-left: 0.00px;
-      padding-top: 0.00px;
-      padding-right: 10.00px;
-      padding-bottom: 0.00px;
-      padding-left: 0.00px;
-      background-color: rgba(255, 255, 255, 0);
-      border-bottom-color: rgba(112, 112, 112, 1);
-      border-bottom-style: none;
-      border-bottom-width: 1.00px;
-      border-left-color: rgba(112, 112, 112, 1);
-      border-left-style: none;
-      border-left-width: 1.00px;
-      border-right-color: rgba(112, 112, 112, 1);
-      border-right-style: none;
-      border-right-width: 1.00px;
-      border-top-color: rgba(112, 112, 112, 1);
-      border-top-style: none;
-      border-top-width: 1.00px;
-      border-top-left-radius: 0.00px;
-      border-top-right-radius: 0.00px;
-      border-bottom-left-radius: 0.00px;
-      border-bottom-right-radius: 0.00px;
-      box-shadow: none;
-    width: 10000.00px;
-    height: 95.00px;
-    left: 1070.00px;
-    top: 2.00px;
-
-}
-.image3 {
-    position: absolute;
-      box-sizing: content-box;
-      -ms-transform: rotate(0.00deg);
-    -webkit-transform: rotate(0.00deg);
-    transform: rotate(0.00deg);
-    -ms-transform-origin: center;
-    -webkit-transform-origin: center;
-    transform-origin: center;
-      background-image: url("assets/image2.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-      opacity: 1;
-      cursor: default;
-      margin-top: 0.00px;
-      margin-right: 0.00px;
-      margin-bottom: 0.00px;
-      margin-left: 0.00px;
-      padding-top: 0.00px;
-      padding-right: 10.00px;
-      padding-bottom: 0.00px;
-      padding-left: 0.00px;
-      background-color: rgba(255, 255, 255, 0);
-      border-bottom-color: rgba(112, 112, 112, 1);
-      border-bottom-style: none;
-      border-bottom-width: 1.00px;
-      border-left-color: rgba(112, 112, 112, 1);
-      border-left-style: none;
-      border-left-width: 1.00px;
-      border-right-color: rgba(112, 112, 112, 1);
-      border-right-style: none;
-      border-right-width: 1.00px;
-      border-top-color: rgba(112, 112, 112, 1);
-      border-top-style: none;
-      border-top-width: 1.00px;
-      border-top-left-radius: 0.00px;
-      border-top-right-radius: 0.00px;
-      border-bottom-left-radius: 0.00px;
-      border-bottom-right-radius: 0.00px;
-      box-shadow: none;
-    width: 10000.00px;
-    height: 95.00px;
-    left: 1175.00px;
-    top: 10.00px;
-
-}
-
- .home {
-    position: absolute;
-      box-sizing: content-box;
-      -ms-transform: rotate(0.00deg);
-    -webkit-transform: rotate(0.00deg);
-    transform: rotate(0.00deg);
-    -ms-transform-origin: center;
-    -webkit-transform-origin: center;
-    transform-origin: center;
-      opacity: 1;
-      cursor: default;
-      margin-top: 0.00px;
-      margin-right: 0.00px;
-      margin-bottom: 0.00px;
-      margin-left: 0.00px;
-      padding-top: 0.00px;
-      padding-right: 0.00px;
-      padding-bottom: 0.00px;
-      padding-left: 0.00px;
-      background-color: rgba(255, 255, 255, 0);
-      text-align: left;
-      letter-spacing: 0.00px;
-      color: rgba(0, 0, 0, 1);
-      -webkit-text-stroke: 1.00px rgba(0, 0, 0, 0);
-      font-size: 40.00px;
-      font-weight: 700;
-    font-style: normal;
-      font-family: 'Trebuchet MS', Arial;
-      text-decoration: none;
-      box-shadow: none;
-      overflow-x: unset;
-      overflow-y: unset;
-      width: 132.00px;
-    height: 66.00px;
-    left: 448.00px;
-    top: 38.00px;
-
-}
-
- .projects {
-    position: absolute;
-      box-sizing: content-box;
-      -ms-transform: rotate(0.00deg);
-    -webkit-transform: rotate(0.00deg);
-    transform: rotate(0.00deg);
-    -ms-transform-origin: center;
-    -webkit-transform-origin: center;
-    transform-origin: center;
-      opacity: 1;
-      cursor: default;
-      margin-top: 0.00px;
-      margin-right: 0.00px;
-      margin-bottom: 0.00px;
-      margin-left: 0.00px;
-      padding-top: 0.00px;
-      padding-right: 0.00px;
-      padding-bottom: 0.00px;
-      padding-left: 0.00px;
-      background-color: rgba(255, 255, 255, 0);
-      text-align: left;
-      letter-spacing: 0.00px;
-      color: rgba(0, 0, 0, 1);
-      -webkit-text-stroke: 1.00px rgba(0, 0, 0, 0);
-      font-size: 40.00px;
-      font-weight: 700;
-    font-style: normal;
-      font-family: 'Trebuchet MS', Arial;
-      text-decoration: none;
-      box-shadow: none;
-      overflow-x: unset;
-      overflow-y: unset;
-      width: 197.00px;
-    height: 66.00px;
-    left: 589.00px;
-    top: 38.00px;
-
-}
-
- .about {
-    position: absolute;
-      box-sizing: content-box;
-      -ms-transform: rotate(0.00deg);
-    -webkit-transform: rotate(0.00deg);
-    transform: rotate(0.00deg);
-    -ms-transform-origin: center;
-    -webkit-transform-origin: center;
-    transform-origin: center;
-      opacity: 1;
-      cursor: default;
-      margin-top: 0.00px;
-      margin-right: 0.00px;
-      margin-bottom: 0.00px;
-      margin-left: 0.00px;
-      padding-top: 0.00px;
-      padding-right: 0.00px;
-      padding-bottom: 0.00px;
-      padding-left: 0.00px;
-      background-color: rgba(255, 255, 255, 0);
-      text-align: left;
-      letter-spacing: 0.00px;
-      color: grey;
-      -webkit-text-stroke: 1.00px grey;
-      font-size: 40.00px;
-      font-weight: 700;
-    font-style: normal;
-      font-family: 'Trebuchet MS', Arial;
-      text-decoration: none;
-      box-shadow: none;
-      overflow-x: unset;
-      overflow-y: unset;
-      width: 132.00px;
-    height: 66.00px;
-    left: 806.00px;
-    top: 38.00px;
-
-}
-        </style>
-
-    <head>
-        <meta charset="utf-8">
-        <title>ABOUT | Colby Pryor</title>
-
-    </head>
-
-    <body>
-        <div data-layer="17c01e0d-226d-4c47-9efc-5be1fe673768" class="web19204">        <div data-layer="f833948a-afa0-47f3-9bcb-9b8f438565fc" class="aBOUTME">A B O U T   M E</div>
-        <svg data-layer="af2c8a72-b936-418b-85a9-f8a103025fd5" preserveAspectRatio="none" viewBox="-0.5 0 1 572" class="line2"><path d="M 0 0 L 0 572"  /></svg>
-        <div data-layer="30822f0a-a010-41c0-8b62-2213ffdd002a" class="image4"></div>
-        <div data-layer="d33be0e8-d8e8-439f-b4b5-a0302010fdfc" class="headOfSoftwareAtAirntellAerospace">Head Of Software at Airntell Aerospace</div>
-        <div data-layer="25b48b9b-ee26-4943-aeb4-33fdc1f2a28e" class="colbyPryor74dd1772"> Colby Pryor</div>
-        <div data-layer="f1075bb7-d50e-4dbe-982d-f6deeb54b1bd" class="image5"></div>
-        <div data-layer="02e716d1-ba7a-49d8-93d2-87715c0bed7c" class="bornInOntarioColbyGrewUpFascinatedInComputersAndTechnologyHeVividlyRemembersBeingInspiredByHisFathersLoveForElectronicsWhichStemmedHisInterestInComputerScienceWhenColbyWasFiveHisFamilyBoughtTheirFirstDesktop">Born in Ontario, Colby grew up fascinated in computers <br />and technology. He vividly remembers being inspired by his <br />father's love for electronics, which stemmed his interest in <br />computer science. When Colby was five, his family bought <br />their first desktop computer resulting in his explosion into<br /> the realm of computing. At the age of seven, Colby said <br />goodbye to his Ontario friends and moved away to <br />Newfoundland & Labrador, where he would continue<br /> to pursue his passion in various robotics teams along <br />with competitions. Colby has earned several awards for his <br />hard work as well as leadership in STEM-related fields, <br />giving him a great upper hand in post secondary. <br /><br />This combined with his highly-regarded positions inside<br />the Sea Cadet program, molded him into an innovative leader <br />at Airntell Aerospace, a startup company that deploys <br />autonomous UAV systems for SAR operations.  On top<br />of this, he is also a Boatswain in the Royal Canadian Naval <br />Reserve. A position in which he excelled in through<br />the Cadet program. <br /><br />Colby is a dedicated individual who will use his leadership to <br />see any task through, no matter the scale. His work along <br />with mentorship has proven this countless times, making <br />him an effective member of any team or organization.</div>
-        <div data-layer="fdfa92ea-2229-4bf0-ad52-b813c8efae01" class="colbyPryor">Colby Pryor<br /> </div>
-        <svg data-layer="2bc791a0-500c-4694-b4ec-7223aec50749" preserveAspectRatio="none" viewBox="0 -3.5 2116 7" class="line1"><path d="M 2116 0 L 0 0"  /></svg>
-        <div class="image1"><a href="https://github.com/pryrotech"><img src="image1.png" width="155" height="73"></a></div>
-        <div class="image2"><a href="https://instagram.com/pryro.tech"><img src="image2.png" width="100" height="86"></a></div>
-        <div class="image3"><a href="https://www.linkedin.com/in/colby-pryor-dev/"><img src="image3.png" width="90" height="75"></a></div>
-        <div  class="home"><a style="text-decoration: none"  href="https://pryrotech.github.io">HOME</a></div>
-        <div class="projects"><a style="text-decoration: none" href="https://pryrotech.github.io/projects">PROJECTS</a></div>
-        <div class="about"><a style="text-decoration: none"  href="https://pryrotech.github.io/about">ABOUT</a></div>
+</style>
+</head>
+<body>
+  <ul>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn"><img src="hamburger.jpg"  height="90"></a>
+      <div class="dropdown-content">
+        <a href="https://pryrotech.github.io/index">Home (Under Renovations)</a>
+        <a href="https://pryrotech.github.io/projects">Projects (Under Renovations) </a>
+        <a href="https://pryrotech.github.io/about">About (Under Renovations) </a>
+	<a href="#">AudioID (Under Renovations) </a>
+      </div>
+    </li>
+  </ul>
+<h1></h1>
+<div id="bg">
 </div>
+<h1 style="background-image:linear-gradient(to bottom right, white, blue);color:white;position:relative;top:15px;right:0px;margin: 0 auto;"><center>About Me</center></h1>
 
+<img src= "image4.png" width="400" height="400" style="position:relative;top:50px;right:-100px;">
 
-    
-    </body>
-    </html>
-            
+<p style="position:relative;top:15px;right:-190px;font-size:30px;"><strong>Colby Pryor</strong><br></br>
+<p style="position:relative;top:-50px;right:-135px;font-size:20px;">Head of Software @Airntell<br></br>
+<p style="position:relative;top:-500px;right:-630px;font-size:15px;">Born in Ontario, Colby grew up fascinated in computers</p>
+<p style="position:relative;top:-510px;right:-630px;font-size:15px;">and technology. He vividly remembers being inspired by his</p>
+<p style="position:relative;top:-520px;right:-630px;font-size:15px;">father's love for electronics, which stemmed his interest in</p>
+<p style="position:relative;top:-530px;right:-630px;font-size:15px;">computer science. When Colby was five, his family bought</p>
+<p style="position:relative;top:-540px;right:-630px;font-size:15px;">their first desktop computer resulting in his explosion into</p>
+<p style="position:relative;top:-550px;right:-630px;font-size:15px;">the realm of computing. At the age of seven, Colby said</p>
+<p style="position:relative;top:-560px;right:-630px;font-size:15px;">goodbye to his Ontario friends and moved away to</p>
+<p style="position:relative;top:-570px;right:-630px;font-size:15px;">Newfoundland & Labrador, where he would continue</p>
+<p style="position:relative;top:-580px;right:-630px;font-size:15px;">to pursue his passion in various robotics teams along</p>
+<p style="position:relative;top:-590px;right:-630px;font-size:15px;">with competitions. Colby has earned several awards for his</p>
+<p style="position:relative;top:-600px;right:-630px;font-size:15px;">hard work as well as leadership in STEM-related fields,</p><br></br>
+<p style="position:relative;top:-610px;right:-630px;font-size:15px;">This combined with his highly-regarded positions inside</p>
+<p style="position:relative;top:-620px;right:-630px;font-size:15px;">the Sea Cadet program, molded him into an innovative leader</p>
+<p style="position:relative;top:-630px;right:-630px;font-size:15px;">at Airntell Aerospace, a startup company that deploys</p>
+<p style="position:relative;top:-640px;right:-630px;font-size:15px;">autonomous UAV systems for SAR operations. On top</p>
+<p style="position:relative;top:-650px;right:-630px;font-size:15px;">of this, he is also a Boatswain in the Royal Canadian Naval</p>
+<p style="position:relative;top:-660px;right:-630px;font-size:15px;">Reserve. A position in which he excelled in through</p>
+<p style="position:relative;top:-670px;right:-630px;font-size:15px;">the Cadet program.</p><br></br>
+<p style="position:relative;top:-680px;right:-630px;font-size:15px;">Colby is a dedicated individual who will use his leadership to</p>
+<p style="position:relative;top:-690px;right:-630px;font-size:15px;">see any task through, no matter the scale. His work along</p>
+<p style="position:relative;top:-700px;right:-630px;font-size:15px;">with mentorship has proven this countless times, making</p>
+<p style="position:relative;top:-710px;right:-630px;font-size:15px;">him an effective member of any team or organization.</p>
+<img src= "image5.png" width="200" height="100" style="position:relative;top:-1000px;right:-210px;">
+<div class="line"></div>
+</body>
+</html>
