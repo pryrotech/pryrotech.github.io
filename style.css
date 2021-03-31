@@ -1,0 +1,45 @@
+h1{
+  font-family: "Bahnschrift";
+
+}
+
+.square {
+  position: fixed;
+  top:10px;
+  left: -10px;
+  height: 500px;
+  width: 100%;
+  border: 10px solid;
+  border-image: linear-gradient(to right, blue,gray) 1;
+  z-index: 1;
+}
+
+
+
+.test_square {
+  --angle: 0deg;
+  position: fixed;
+  top:-10px;
+  left: -10px;
+  height: 500px;
+  width: 100%;
+  border: 10px solid;
+  border-bottom-width: 50px;
+  border-top-width: 50px;
+  border-image: linear-gradient(var(--angle), blue,purple) 1;
+  
+  animation: 10s rotate linear infinite;
+}
+
+@keyframes rotate {
+  to {
+    --angle: 360deg;
+  }
+}
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
