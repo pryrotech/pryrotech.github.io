@@ -84,7 +84,8 @@ colby_image{
   border-left:none;
   border-top:none;
   border-image: linear-gradient(var(--angle), blue,pink) 1;
-  
+  -webkit-animation-name: rotate linear infinite;
+  -webkit-animation-duration: 10s;
   animation: 10s rotate linear infinite;
 }
 .test_square_two {
