@@ -1,34 +1,86 @@
+body{
+  height: 15000px;
+  overflow-x:hidden;
+}
+
 h1{
   font-family: "Bahnschrift";
 
 }
 
-.square {
-  position: fixed;
-  top:10px;
-  left: -10px;
-  height: 500px;
-  width: 100%;
-  border: 10px solid;
-  border-image: linear-gradient(to right, blue,gray) 1;
-  z-index: 1;
+p{
+  font-family:'Helvetica';
 }
 
+@media screen and (max-width: 600px) {
+  div.adapt {
+    font-size: 30px;
+  }
+  video {
+    display:none
+    }
+}
 
+@media screen and (min-width: 601px) {
+  div.adapt {
+    font-size: 60px;
+  }
+}
 
+colby_image{
+  width: 300px;
+  height: 300px;
+}
 .test_square {
   --angle: 0deg;
-  position: fixed;
+  position: relative;
   top:-10px;
+  padding:15px;
   left: -10px;
   height: 500px;
   width: 100%;
   border: 10px solid;
   border-bottom-width: 50px;
-  border-top-width: 50px;
+  border-bottom-width: 1700px;
+  border-top-width: 60px;
+  border-right:none;
+  border-left:none;
   border-image: linear-gradient(var(--angle), blue,purple) 1;
   
   animation: 10s rotate linear infinite;
+}
+.try_square {
+  --angle: 0deg;
+  position: relative;
+  top:-10px;
+  padding:15px;
+  left: -10px;
+  height: 500px;
+  width: 100%;
+  border: 10px solid;
+  border-bottom-width: 50px;
+  border-bottom-width: 1700px;
+  border-top-width: 60px;
+  border-right:none;
+  border-left:none;
+  border-top:none;
+  border-image: linear-gradient(var(--angle), blue,pink) 1;
+  
+  animation: 10s rotate linear infinite;
+}
+.test_square_two {
+  --angle: 0deg;
+  position: relative;
+  top:30px;
+  left: -100px;
+  height: 500px;
+  width: 3000px;
+  border-bottom-width: 50px;
+  border-bottom-width: 3000px;
+  border-top-width: 60px;
+  border-right:none;
+  border-left:none;
+  background-color: white;
 }
 
 @keyframes rotate {
@@ -43,3 +95,61 @@ h1{
   inherits: false;
 }
 
+.typewriter {
+    font-family: Courier, monospace;
+	display: inline-block;
+}
+
+.typewriter-text {
+    display: inline-block;
+    overflow: hidden;
+    letter-spacing: 2px;
+    animation: typing 5s steps(30, end), blink .75s step-end infinite;
+    white-space: nowrap;
+    font-size: 100%;
+    font-weight: 700;
+    border-right: 4px solid blue;
+    box-sizing: border-box;
+}
+
+@keyframes typing {
+    from { 
+        width: 0% 
+    }
+    to { 
+        width: 100% 
+    }
+}
+
+@keyframes blink {
+    from, to { 
+        border-color: transparent 
+    }
+    50% { 
+        border-color: blue; 
+    }
+}
+
+.btn {
+  background-color: transparent;
+  border: solid white 1px;
+  border-radius: 25px;
+  color: white;
+  padding: 12px 30px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.btn:hover {
+  background-color: white;
+  color: purple;
+  border: solid white 1px;
+}
+
+.projects{
+font-size:30px;
+border: solid  5px;
+border-image: linear-gradient(blue,purple) 25 ;
+border-radius: 100px;
+position:relative;
+}

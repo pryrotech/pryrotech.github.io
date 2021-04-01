@@ -9,7 +9,7 @@
   	letter-spacing: 2px;
  	animation: typing 5s steps(30, end), blink .75s step-end infinite;
     white-space: nowrap;
-    font-size: 30px;
+    font-size: responsive;
     font-weight: 700;
     border-right: 4px solid blue;
     box-sizing: border-box;
