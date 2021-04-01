@@ -1,6 +1,5 @@
 body{
-  height: 15000px;
-  overflow-x:hidden;
+  overflow:hidden;
 }
 
 h1{
@@ -8,6 +7,15 @@ h1{
 
 }
 
+@font-face {
+  font-family: 'MyWebFont';
+  src: url('webfont.eot'); /* IE9 Compat Modes */
+  src: url('webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('webfont.woff2') format('woff2'), /* Super Modern Browsers */
+       url('webfont.woff') format('woff'), /* Pretty Modern Browsers */
+       url('webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
 p{
   font-family:'Helvetica';
 }
@@ -41,7 +49,7 @@ colby_image{
   width: 100%;
   border: 10px solid;
   border-bottom-width: 50px;
-  border-bottom-width: 1750px;
+  border-bottom-width: 100%;
   border-top-width: 60px;
   border-right:none;
   border-left:none;
@@ -153,3 +161,4 @@ border-image: linear-gradient(blue,purple) 25 ;
 border-radius: 100px;
 position:relative;
 }
+
