@@ -1,6 +1,27 @@
 body{
-  height: 1500px;
-  overflow-x:hidden;
+  	background: linear-gradient(270deg, #18f0b8, #18a2f0, #db5640);
+	background-size: 600% 600%;
+	-webkit-animation: Gradient 60s ease infinite;
+	-moz-animation: Gradient 60s ease infinite;
+	animation: Gradient 60s ease infinite;
+}
+	
+    
+    @-webkit-keyframes Gradient {
+		0%{background-position:0% 50%}
+		50%{background-position:100% 50%}
+		100%{background-position:0% 50%}
+	}
+	@-moz-keyframes Gradient {
+		0%{background-position:0% 50%}
+		50%{background-position:100% 50%}
+		100%{background-position:0% 50%}
+	}
+	@keyframes Gradient { 
+		0%{background-position:0% 50%}
+		50%{background-position:100% 50%}
+		100%{background-position:0% 50%}
+	}
 }
 
 h1{
@@ -49,25 +70,7 @@ colby_image{
   
   animation: 10s rotate linear infinite;
 }
-.try_square {
-  --angle: 0deg;
-  position: relative;
-  top:-10px;
-  padding:15px;
-  left: -10px;
-  height: 500px;
-  width: 100%;
-  border: 10px solid;
-  border-bottom-width: 50px;
-  border-bottom-width: 1700px;
-  border-top-width: 60px;
-  border-right:none;
-  border-left:none;
-  border-top:none;
-  border-image: linear-gradient(var(--angle), blue,pink) 1;
-  
-  animation: 10s rotate linear infinite;
-}
+
 .test_square_two {
   --angle: 0deg;
   position: relative;
