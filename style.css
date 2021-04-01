@@ -51,21 +51,15 @@ colby_image{
   height: 300px;
 }
 .test_square {
-  --angle: 0deg;
-  position: relative;
-  top:-10px;
-  padding:15px;
-  left: -10px;
-  height: 500px;
-  width: 100%;
-  border: 10px solid;
-  border-bottom-width: 50px;
-  border-bottom-width: 1750px;
-  border-top-width: 60px;
-  border-right:none;
-  border-left:none;
-  border-image: linear-gradient(var(--angle), blue,purple) 1;
-  -webkit-animation: Gradient 60s ease infinite;
+background: linear-gradient(270deg, #18f0b8, #18a2f0, #db5640);
+border: 10px solid;
+border-bottom-width: 50px;
+border-bottom-width: 1750px;
+border-top-width: 60px;
+border-right:none;
+border-left:none;
+background-size: 500px 100%;
+	-webkit-animation: Gradient 60s ease infinite;
 	-moz-animation: Gradient 60s ease infinite;
 	animation: Gradient 60s ease infinite;
 }
@@ -86,7 +80,7 @@ colby_image{
 		50%{background-position:100% 50%}
 		100%{background-position:0% 50%}
 	}
-  animation: 10s rotate linear infinite;
+
 }
 .try_square {
   --angle: 0deg;
