@@ -2,13 +2,13 @@
 
 font-family: 'Bahnschrift';
 
-src: url('fonts/BebasNeue-webfont.eot?') format('eot'),
+src: url('Bahnschrift.ttf') format('eot'),
 
-url('fonts/BebasNeue-webfont.woff') format('woff'),
+url('Bahnschrift.ttf') format('woff'),
 
-url('fonts/BebasNeue-webfont.ttf') format('truetype'),
+url('Bahnschrift.ttf') format('truetype'),
 
-url('fonts/BebasNeue-webfont.svg#webfontfvFLBU0N') format('svg');
+url('Bahnschrift.ttf') format('svg');
 
 font-weight: normal;
 
