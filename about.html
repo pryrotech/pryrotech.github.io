@@ -1,172 +1,59 @@
-<!DOCTYPE html>
 <html>
-<link rel="icon" type="image/png" href="favicon-16x16.png"/>
 <head>
-<title>ABOUT ME | Colby Pryor</title>
-<meta name="viewport" content="width=device-width, user-scalable=no">
-<style>
-html{
-  min-zoom:100%;
-  max-zoom:110%;
-}
-body { 
-  overflow-y: scroll;
-  overflow-x: hidden;
-  margin: 0;
-  font-family:  Helvetica, sans-serif;
-  font-family: 'Michroma', sans-serif;
-  height:1500px;
-
-}
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-image: linear-gradient(to bottom right, black, grey);
-  height: 100px;
-  left: 100px;
-  top: 300px;
-  z-index: 1;
-}
-
-li {
-  float: left;
-}
-
-li a, .dropbtn {
-  display: inline-block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover, .dropdown:hover .dropbtn {
-  background-color: blue;
-}
-
-li.dropdown {
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  max-width: 300px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-  top: 100px;
-}
-
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
-
-.dropdown-content a:hover {background-color: #f1f1f1;}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-#content {
-    position: relative;
-}
-#content img {
-  
-    position: absolute;
-    top: -17px;
-    right: -80px;
-}
-#bg {
-    position: sticky;
-    width:100%;
-    height:20%;
-    background: url('colby.jpg') no-repeat center center fixed;
-    filter: blur(10px);
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}}
-
-.imgtext {		
-		color: white;
-		background: rgba(0,0,0,0.6);
-		width: 100%;
-		height: 100%;
-		opacity: 0;
-		position: absolute;
-		bottom: 0px;
-		-webkit-transition: all 0.8s ease-in-out;
-		-o-transition: all 0.8s ease-in-out;
-		transition: all 0.8s ease-in-out;
-}
-h1AudioID {
-  font-size: 72px;
-  background: -webkit-linear-gradient(#eee, #333);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.line {
-  position: relative;
-  top:-1600px;
-  right:-600px;
-  border-left: 6px solid black;
-  height: 790px;
-}
-
-</style>
+	<title>Colby Pryor</title>
+	<link rel="stylesheet" href="projects.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+  <link rel="canonical" href="https://amp.dev/documentation/examples/multimedia-animations/animated_hamburger_menu/index.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <div class="safari">
+    <div>
+     <div class="hamburger_wrapper">
+       <div id="hamburger" tabindex="1" role="button" on="tap:hamburger.toggleClass(class='close'),nav-menu.toggleClass(class='now-active')">
+         <span></span>
+         <span></span>
+         <span></span>
+       </div>
+       
+     </div>
+     <div id="nav-menu">
+       <ul class="nav-list">
+         <li><a  style="color:white; text-decoration:none;"href="index.html"><i>HOME</i></a></li>
+         <li><a  style="color:white; text-decoration:none;"href="#"><i>PROJECTS</i></a></li>
+         <li><a  style="color:white; text-decoration:none;"href="#"><i>ABOUT</i></a></li>
+         <li><a  style="color:white; text-decoration:none;"href="#"><i>CONTACT</i></a></li>
+       </ul>
+     </div>
+     <img src='about.gif' width=100% height=60% style="position:relative;top:-171px; filter:brightness(0.2);"/>
+     <center><img src='colby.jpg' width=300px height=300px style="position:relative;top:-160px;border:solid grey 2px; border-radius:400px;"/></center>
+     <h1 style="color: white;font-family: Bahnschrift;font-size:xxx-large;position:relative;top:-750px;""><center>ABOUT ME</center></h1>
+     <h1 style="color: white;font-family: Bahnschrift;position:relative;top:-220px;""><center>Colby Pryor</center></h1>
+     <h1 style="color: white;font-family: Bahnschrift;position:relative;top:-220px;""><center>Founder & President Canadian Premier Robotics</center></h1>
+     <h3 style="color: white;font-family: Bahnschrift;position:relative;top:-180px;""><center>Born in Ontario, Colby grew up fascinated with computers and technology, 
+      He vividly remembers being inspired by his father's love for electronics, which 
+      stemmed his interest in computer science. When Colby was five, his family
+      bought their first desktop computer resulting in his explosion into the realm
+      of computing. At the age of seven, Colby said goodbye to his Ontario friends
+      and moved away to Newfoundland & Labrador, where he would continue to 
+      pursue his passion in various robotics teams along with competitions. Colby
+      has earned several awards for his hard work as well as leadership in STEAM
+      related fields.<br><br>
+      
+      This combined with his highly-regarded positions inside the Sea Cadet program
+      molded him into an innovative leader at the Canadian Robotics league as well
+      as Airntell Aerospace, a startup company that deploys autonomous UAV systems
+      for SAR operations. On top of this, her is also a Boatswain in the Royal Canadian
+      Naval Reserve. A position in which he excelled in thanks to the Cadet program.<br><br>
+      
+      Colby is a dedicated individual who will use his leadership to see any task through,
+      no matter the scale. His work along with mentorship has proven this countless times,,
+      making him an effective member of any team or organization. </center></h3>
+      <a href="ColbyPryorProfResume.pdf" download='GFG'>
+        <center><button class="btn" style="position:relative;top:-170px;"><i class="fa fa-download"></i><b> DOWNLOAD MY RESUME</b></button></center>
+        </a>
+   <div>
+   </div></div>
 </head>
 <body>
-  <ul>
-    <li class="dropdown">
-      <a href="javascript:void(0)" class="dropbtn"><img src="hamburger.jpg"  height="90"></a>
-      <div class="dropdown-content">
-        <a href="https://pryrotech.github.io/index">Home (Under Renovations)</a>
-        <a href="https://pryrotech.github.io/projects">Projects (Under Renovations) </a>
-        <a href="https://pryrotech.github.io/about">About (Under Renovations) </a>
-	<a href="#">AudioID (Under Renovations) </a>
-      </div>
-    </li>
-  </ul>
-<h1></h1>
-<div id="bg">
-</div>
-<h1 style="background-image:linear-gradient(to bottom right, white, blue);color:white;position:relative;top:15px;right:0px;margin: 0 auto;"><center>About Me</center></h1>
 
-<img src= "image4.png" width="400" height="400" style="position:relative;top:50px;right:-100px;">
-
-<p style="position:relative;top:15px;right:-190px;font-size:30px;"><strong>Colby Pryor</strong><br></br>
-<p style="position:relative;top:-50px;right:-135px;font-size:20px;">Head of Software @Airntell<br></br>
-<p style="position:relative;top:-500px;right:-630px;font-size:15px;">Born in Ontario, Colby grew up fascinated in computers</p>
-<p style="position:relative;top:-510px;right:-630px;font-size:15px;">and technology. He vividly remembers being inspired by his</p>
-<p style="position:relative;top:-520px;right:-630px;font-size:15px;">father's love for electronics, which stemmed his interest in</p>
-<p style="position:relative;top:-530px;right:-630px;font-size:15px;">computer science. When Colby was five, his family bought</p>
-<p style="position:relative;top:-540px;right:-630px;font-size:15px;">their first desktop computer resulting in his explosion into</p>
-<p style="position:relative;top:-550px;right:-630px;font-size:15px;">the realm of computing. At the age of seven, Colby said</p>
-<p style="position:relative;top:-560px;right:-630px;font-size:15px;">goodbye to his Ontario friends and moved away to</p>
-<p style="position:relative;top:-570px;right:-630px;font-size:15px;">Newfoundland & Labrador, where he would continue</p>
-<p style="position:relative;top:-580px;right:-630px;font-size:15px;">to pursue his passion in various robotics teams along</p>
-<p style="position:relative;top:-590px;right:-630px;font-size:15px;">with competitions. Colby has earned several awards for his</p>
-<p style="position:relative;top:-600px;right:-630px;font-size:15px;">hard work as well as leadership in STEM-related fields,</p><br></br>
-<p style="position:relative;top:-610px;right:-630px;font-size:15px;">This combined with his highly-regarded positions inside</p>
-<p style="position:relative;top:-620px;right:-630px;font-size:15px;">the Sea Cadet program, molded him into an innovative leader</p>
-<p style="position:relative;top:-630px;right:-630px;font-size:15px;">at Airntell Aerospace, a startup company that deploys</p>
-<p style="position:relative;top:-640px;right:-630px;font-size:15px;">autonomous UAV systems for SAR operations. On top</p>
-<p style="position:relative;top:-650px;right:-630px;font-size:15px;">of this, he is also a Boatswain in the Royal Canadian Naval</p>
-<p style="position:relative;top:-660px;right:-630px;font-size:15px;">Reserve. A position in which he excelled in through</p>
-<p style="position:relative;top:-670px;right:-630px;font-size:15px;">the Cadet program.</p><br></br>
-<p style="position:relative;top:-680px;right:-630px;font-size:15px;">Colby is a dedicated individual who will use his leadership to</p>
-<p style="position:relative;top:-690px;right:-630px;font-size:15px;">see any task through, no matter the scale. His work along</p>
-<p style="position:relative;top:-700px;right:-630px;font-size:15px;">with mentorship has proven this countless times, making</p>
-<p style="position:relative;top:-710px;right:-630px;font-size:15px;">him an effective member of any team or organization.</p>
-<img src= "image5.png" width="200" height="100" style="position:relative;top:-1000px;right:-210px;">
-<div class="line"></div>
 </body>
-</html>
