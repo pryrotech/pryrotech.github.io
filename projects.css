@@ -96,7 +96,7 @@ body{
     list-style-type: none;
     font-size: 2em;
     text-decoration: none;
-    font-family: Bahnschrift;
+    font-family: Arial;
     text-decoration: none;
   
   }
@@ -118,7 +118,7 @@ body{
     height: 50%;
     width: 75%;
     background-image: linear-gradient(to bottom right, rgba(252, 252, 252, 0.925), rgb(196, 196, 196));
-    font-family:Bahnschrift;
+    font-family:Arial;
     border: solid rgb(197, 193, 193) 1px;
     border-top-left-radius: 30px;
     border-bottom-right-radius: 30px;
