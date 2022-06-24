@@ -74,7 +74,10 @@
 body{
     margin: 0;
     overflow-x:hidden;
+    height: 100%;
 }
+
+
 
 .bg1{
     background-color: #ffffff;
@@ -87,11 +90,13 @@ body{
 
 .bg2{
   background-color: #464545;
+  color: white;
   -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: fadein 2s; /* Firefox < 16 */
    -ms-animation: fadein 2s; /* Internet Explorer */
     -o-animation: fadein 2s; /* Opera < 12.1 */
        animation: fadein 2s;
+  padding-bottom: -1px;
 }
 
 button{
@@ -123,4 +128,23 @@ button{
         color: black;
       }
 
+}
+
+.wrappingimage
+{
+float: left; 
+margin: 30px 12px 3px 4px;
+ 
+} 
+
+@media screen and (min-width: 1000px) {
+  .wrappingimage{
+    visibility:hidden;
+    text-align: center;
+  } 
+
+
+  p{
+    font-size: xxx-large;
+  }
 }
