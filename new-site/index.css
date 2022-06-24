@@ -104,9 +104,10 @@ button{
   font-family:'Ubuntu', sans-serif;
   width: 250px;
   height: 50px;
-  color: white;
+  color: black;
   position: relative;
   top: -10px;
+  border: solid grey 1px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -126,7 +127,7 @@ button{
 
       button{
         background-color:transparent;
-        color: black;
+        color: white;
       }
 
 }
