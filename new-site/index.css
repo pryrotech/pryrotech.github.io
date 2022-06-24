@@ -100,9 +100,10 @@ body{
 }
 
 button{
-  background-color: black;
+  background-color: transparent;
   font-family:'Ubuntu', sans-serif;
   width: 250px;
+  height: 50px;
   color: white;
   position: relative;
   top: -10px;
@@ -124,7 +125,7 @@ button{
       }
 
       button{
-        background-color:white;
+        background-color:transparent;
         color: black;
       }
 
