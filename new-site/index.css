@@ -85,6 +85,24 @@ body{
          animation: fadein 2s;
 }
 
+.bg2{
+  background-color: #464545;
+  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 2s; /* Firefox < 16 */
+   -ms-animation: fadein 2s; /* Internet Explorer */
+    -o-animation: fadein 2s; /* Opera < 12.1 */
+       animation: fadein 2s;
+}
+
+button{
+  background-color: black;
+  font-family:'Ubuntu', sans-serif;
+  width: 250px;
+  color: white;
+  position: relative;
+  top: -10px;
+}
+
 @media (prefers-color-scheme: dark) {
     body,.bg1 {
       background-color: rgb(53, 52, 52);
@@ -98,6 +116,11 @@ body{
       .granimate::before {
         background: linear-gradient(105deg, rgba(33, 74, 207, 0.568), #640c27);
         animation: hue 12s linear 1s infinite;
+      }
+
+      button{
+        background-color:white;
+        color: black;
       }
 
 }
