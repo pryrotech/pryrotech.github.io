@@ -1,7 +1,17 @@
 <!DOCTYPE html>
 
 <html>
- 
+
+    <script>
+            function hide(hideme) {
+
+            var hide = document.getElementById(hideme);
+
+            hide.style.display = 'none';
+
+            }
+
+    </script>
     <head>
         <title>Colby Pryor</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,10 +25,14 @@
 
 
     <body>
+
+        <div class="hideme" id="hideme" onClick="hide('hideme')">
+            <h3 style="font-family: 'Roboto', sans-serif;">It appears that you are on the PC verison of my portfolio. For the best experience, try visiting this site using your phone or tablet.      <b><i>Click to dismiss</i></b></h1>
+        </div>
         <div class="full granimate" onload="document.body.style.opacity='1'"></div>
-        <div style="font-family: 'Ubuntu', sans-serif;font-size:x-large;position:relative;top:-150px;color:white;" >
+        <div style="font-family: 'Ubuntu', sans-serif;font-size:x-large;position:relative;top:-120px;color:white;" >
              <center><p>Welcome to my portfolio!</p></center>
-         <center><a href="https://www.instagram.com/pryro.tech"><img src="instagram.png" style="width:30px;height:30px;position:relative;top:-40px;"></a><a href="https://www.linkedin.com/in/colby-pryor-dev/"><img src="linkedin.png" style="width:30px;height:30px;position:relative;top:-40px;left:10px;"></a><a href="https://www.github.com/pryrotech"><img src="github-sign.png" style="width:30px;height:30px;position:relative;top:-40px;left:20px;"></a></center>
+         <center><a href="https://www.instagram.com/pryro.tech"><img src="instagram.png" style="width:30px;height:30px;position:relative;top:-20px;"></a><a href="https://www.linkedin.com/in/colby-pryor-dev/"><img src="linkedin.png" style="width:30px;height:30px;position:relative;top:-20px;left:10px;"></a><a href="https://www.github.com/pryrotech"><img src="github-sign.png" style="width:30px;height:30px;position:relative;top:-20px;left:20px;"></a></center>
     
 
              
@@ -27,12 +41,12 @@
         <div class="bg1" style="font-family: 'Ubuntu', sans-serif;position:relative;top:-140px;">
             <center><p style="font-size:40px;">PROJECTS</p></center>
             <center><p style="font-size:50px;"><b>The MariTrack Project</b></p></center>
-            <center><p style="font-family: 'Roboto', sans-serif; font-size:medium;position:relative;top:-40px;">A Java web application that utilizes Python OCR and TensorFlow
+            <center><p style="font-family: 'Roboto', sans-serif; font-size:xxx-large;position:relative;top:-40px;">A Java web application that utilizes Python OCR and TensorFlow
             to deter piracy, illegal smuggling, and human tracking through ship recognition in Canadian shipping ports of entry.</p></center>
-            <center><iframe style="border: solid grey 30px;position:relative; top:-30px;"width="500px;" height="315" src="https://www.youtube.com/embed/KjTFZZJJ0PI" title="YouTube video player"></iframe></center>
+            <center><iframe style="background-color:white;border: solid grey 30px;position:relative; top:-30px;"width="1000px;" height="315" src="https://www.youtube.com/embed/KjTFZZJJ0PI" title="YouTube video player"></iframe></center>
 
             <center><p style="font-size:50px;"><b>MariCast</b></p></center>
-            <center><p style="font-family: 'Roboto', sans-serif; font-size:medium;position:relative;top:-40px;">Mariners often struggle to find the required information to efficientlyset sail, therefore, creating a centralized system where they can find relevant data would help increase the efficiency of ships as well as promote the safety of maritime operations. 
+            <center><p style="font-family: 'Roboto', sans-serif; font-size:xx-large;position:relative;top:-40px;">Mariners often struggle to find the required information to efficientlyset sail, therefore, creating a centralized system where they can find relevant data would help increase the efficiency of ships as well as promote the safety of maritime operations. 
                 MariCast will provide mariners accurate marine weather data based on their location, active weather alerts, nautical charts, as well as depth and ranges so they can have the peace of mind when underway. Oftentimes mariners are left with having to sift through many government websites, old meteorological applications 
                 and physical mediums to find the results they want.</p></center>
 
@@ -46,7 +60,7 @@
                 <center><p style="font-size:40px;">ABOUT ME</p></center> 
                 <center><img src="colby.png" style="width:500px;height:600px;position:relative;top:6px;filter:grayscale(100%)"> </center>
 
-                <center><p style="font-family: 'Roboto', sans-serif; font-size:x-large;"> 
+                <center><p style="font-family: 'Roboto', sans-serif; font-size:xx-large;"> 
                     Colby Pryor (CPO) is a Software Engineer at WithYouWithMe, and a skilled enterprise developer with a focus in Computer Vision systems. 
                     He is also well-versed in robotics competing in provincial robotics competitions and becoming the founder of his own non-profit
                     named Canadian Premier Robotics, an organization dedicated to providing universal access to STEAM through robotics education. 
@@ -60,4 +74,3 @@
             </div>
         </body>
 </html>
-
