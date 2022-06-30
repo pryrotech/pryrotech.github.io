@@ -99,6 +99,18 @@ color: white;
 padding-bottom: -1px;
 }
 
+.bg3{
+  height:400px;
+  background-color: #a19f9f;
+  color: white;
+  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 2s; /* Firefox < 16 */
+   -ms-animation: fadein 2s; /* Internet Explorer */
+    -o-animation: fadein 2s; /* Opera < 12.1 */
+       animation: fadein 2s;
+  padding-bottom: -1px;
+  }
+
 button{
 background-color: transparent;
 font-family:'Ubuntu', sans-serif;
@@ -159,4 +171,15 @@ margin: 30px 12px 3px 4px;
   text-align: center;
 } 
 
+}
+
+figcaption{
+  font-size:large;
+  color:black;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+  white-space: pre-wrap;
 }
