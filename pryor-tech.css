@@ -1,0 +1,265 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body{
+    overflow-x: hidden;
+    background-color: rgb(105, 102, 102);;
+}
+
+ul {
+    list-style-type: none;
+    margin-top: -10px;
+    padding: 10px;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    left: -10px;
+    background-color: rgb(0, 0, 0);
+  }
+  
+  li {
+    float: right;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 30px 16px;
+    text-decoration: none;
+    font-size: small;
+    font-family: "Roboto", serif;
+  }
+  
+  li a:hover {
+    background-color: rgb(0, 0, 0);
+    color: rgb(126, 126, 126);
+    padding-bottom: 30px;
+  }
+
+  .button{
+    width: auto;
+    height: 5px;
+    background-color:black;
+    border:solid black 1 px;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+  }
+
+  .welcome{
+    background-image: url("nl.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border-bottom: solid grey 3px;
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 2s; /* Firefox < 16 */
+     -ms-animation: fadein 2s; /* Internet Explorer */
+      -o-animation: fadein 2s; /* Opera < 12.1 */
+         animation: fadein 2s;
+    position:relative;
+    top: -16px;
+    left: -8px;
+    filter: brightness(0.8);
+    z-index: 1;
+
+  }
+
+  .website-development{
+    background-image: url("web-design.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border-bottom: solid grey 30px;
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 2s; /* Firefox < 16 */
+    -ms-animation: fadein 2s; /* Internet Explorer */
+    -o-animation: fadein 2s; /* Opera < 12.1 */
+    animation: fadein 2s;
+    position:relative;
+    top: -38px;
+    left: -8px;
+   
+    z-index: 1;
+
+  }
+
+  .app-development{
+    background-image: url("mob-design.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border-bottom: solid grey 30px;
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 2s; /* Firefox < 16 */
+    -ms-animation: fadein 2s; /* Internet Explorer */
+    -o-animation: fadein 2s; /* Opera < 12.1 */
+    animation: fadein 2s;
+    position:relative;
+    top: -60px;
+    left: -8px;
+   
+    z-index: 1;
+
+  }
+
+  .graphic-design{
+    background-image: url("gra-design.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border-bottom: solid grey 30px;
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 2s; /* Firefox < 16 */
+    -ms-animation: fadein 2s; /* Internet Explorer */
+    -o-animation: fadein 2s; /* Opera < 12.1 */
+    animation: fadein 2s;
+    position:relative;
+    top: -82px;
+    left: -8px;
+   
+    z-index: 1;
+
+  }
+
+  .social-media{
+    background-color:rgb(25, 131, 158);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border-bottom: solid grey 30px;
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 2s; /* Firefox < 16 */
+    -ms-animation: fadein 2s; /* Internet Explorer */
+    -o-animation: fadein 2s; /* Opera < 12.1 */
+    animation: fadein 2s;
+    position:relative;
+    top: -104px;
+    left: -8px;
+   
+    z-index: 1;
+
+  }
+
+  .quote{
+    background-color:rgb(63, 82, 87);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border-bottom: solid grey 30px;
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 2s; /* Firefox < 16 */
+    -ms-animation: fadein 2s; /* Internet Explorer */
+    -o-animation: fadein 2s; /* Opera < 12.1 */
+    animation: fadein 2s;
+    position:relative;
+    top: -104px;
+    left: -8px;
+   
+    z-index: 1;
+
+  }
+
+
+  h1{
+    font-family: 'Montserrat',serif;
+  }
+
+  h2{
+    font-family: 'Montserrat',serif;
+  }
+
+  p{
+    font-family: 'Montserrat',serif;
+    font-size:auto;
+  }
+
+  @media screen and (min-width: 1000px) {
+    body{
+      width: 100%;
+    } 
+
+    
+    }
+
+  @media screen and (max-width: 1000px) {
+    body{
+      width: 100%;
+      height: 3px;
+      overflow-x:hidden;
+    } 
+    li{
+      visibility:hidden;
+    }
+    .welcome{
+      background-size:auto;
+    }
+    ul{
+      height:80px;
+      padding: none;
+    }
+    h1.b{
+      visibility:hidden;
+    }
+    .website-development{
+      background-image: none;
+      background-color: rgb(22, 149, 172);
+      top:-300px;
+    }
+    .app-development{
+      background-image: none;
+      background-color: rgb(66, 175, 194);
+      top:-320px;
+    }
+    .graphic-design{
+      background-image: none;
+      background-color: rgb(131, 212, 226);
+      top: -340px;
+    }
+    .social-media{
+      background-image: none;
+      background-color: rgb(182, 204, 207);
+      top: -360px;
+    }
+
+    .quote{
+      top: -380px;
+    }
+    
+    }
+
+    @keyframes fadein {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    
+    /* Firefox < 16 */
+    @-moz-keyframes fadein {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    
+    
+    @-webkit-keyframes fadein {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    
+    /* Internet Explorer */
+    @-ms-keyframes fadein {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    
+    /* Opera < 12.1 */
+    @-o-keyframes fadein {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: rgb(105, 102, 102);
+      color: white;
+      text-align: center;
+   }
+
+   
