@@ -115,6 +115,18 @@ padding-bottom: -1px;
   padding-bottom: -1px;
   }
 
+.bg4{
+    height:400px;
+    background-color: #1f1e1e;
+    color: white;
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 2s; /* Firefox < 16 */
+     -ms-animation: fadein 2s; /* Internet Explorer */
+      -o-animation: fadein 2s; /* Opera < 12.1 */
+         animation: fadein 2s;
+    padding-bottom: -1px;
+}
+
 button{
 background-color: transparent;
 font-family:'Ubuntu', sans-serif;
@@ -136,9 +148,16 @@ border: solid grey 1px;
 }
 
 @media (prefers-color-scheme: dark) {
+  .blog{
+    color: white;
+  }
   body,.bg1 {
     background-color: rgb(53, 52, 52);
     color:white;
+  }
+  .bg4{
+    background-color: #ffff;
+    color: black;
   }
 
   .granimate {
