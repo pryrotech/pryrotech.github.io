@@ -146,16 +146,16 @@ h1{
   font-family: "Exo 2", sans-serif; 
 }
 
-.desktop-repair{
-  background-color: #1e202c;
+.web-dev{
+  background-color: #4b5174;
   color: white;
   position: relative;
   top: 30px;
   padding: 16px 30px;
 }
 
-.residential{
-  background-color: #181d33;
+.web-maintenance{
+  background-color: #464f7a;
   color: white;
   position: relative;
   top: 30px;
