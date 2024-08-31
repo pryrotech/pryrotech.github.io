@@ -236,3 +236,32 @@ a{
   padding: 16px 16px;
   transition: all .2s;
 }
+
+label{
+  font-family: "Exo 2", sans-serif; 
+  display: inline-block; 
+  width: 210px; 
+}
+
+
+.registration{
+  background-color: white; 
+  position: relative; 
+  top: -60px;
+}
+
+h2{
+  font-family: "Exo 2", sans-serif; 
+}
+
+h3{
+  font-family: "Exo 2", sans-serif; 
+}
+
+ul{
+  font-family: "Arimo", sans-serif;
+}
+
+li{
+  font-family: "Arimo", sans-serif;
+}
