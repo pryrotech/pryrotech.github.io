@@ -162,37 +162,7 @@ h1{
   padding: 16px 30px;
 }
 
-.commercial{
-  background-color: #040d33;
-  color: white;
-  position: relative;
-  top: 30px;
-  padding: 16px 30px;
-}
 
-.media{
-  background-color: #737daa;
-  color: white;
-  position: relative;
-  top: 30px;
-  padding: 16px 30px;
-}
-
-.roof-inspections{
-  background-color: #8d8d71;
-  color: white;
-  position: relative;
-  top: 30px;
-  padding: 16px 30px;
-}
-
-.hazard-inspection{
-  background-color: #707063;
-  color: white;
-  position: relative;
-  top: 30px;
-  padding: 16px 30px;
-}
 
 .footer{
   font-family: "Arimo", sans-serif;
