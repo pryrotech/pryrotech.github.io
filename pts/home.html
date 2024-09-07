@@ -3,12 +3,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-    <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+    <script type="text/javascript" src="curtain-menu.js"></script>
     <link rel="stylesheet" href="styles.css">
     <title>Pryor Technical Solutions | HOME</title>
 
-
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+    
     <div class="topnav">
         <div class="navbarlogo">
             <div class="navbar-logo-container">
@@ -22,6 +22,17 @@
         <a href="it-services.html">IT SERVICES</a>
         <a class="active" href="#home">HOME</a>
         </div>
+
+    <div id="myNav" class="overlay">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="overlay-content">
+            <a href="media-services.html">MEDIA SERVICES</a>
+            <a href="consultancy.html">CONSULTANCY SERVICES</a>
+            <a href="web-development.html">WEBSITE DEVELOPMENT</a>
+            <a href="it-services.html">IT SERVICES</a>
+            <a class="active" href="#home">HOME</a>
+        </div>
+    </div>
 
 </head>
 
