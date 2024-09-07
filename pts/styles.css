@@ -317,3 +317,9 @@ li{
   }
 
 }
+
+@media (min-width: 960px) {
+  .topnav{
+    display: none;
+  }
+}
