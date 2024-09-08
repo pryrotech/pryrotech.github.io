@@ -318,8 +318,21 @@ li{
 
 }
 
-@media (min-width: 960px) {
-  .topnav{
+@media (max-width: 960px) {
+  .topnav a{
     display: none;
+  }
+  .hamburger{
+    color:white;
+    font-size:60px;
+    cursor:pointer; 
+    position: relative; 
+    top: -35px;
+    float: right;
+  }
+
+  .navbar-logo-container{
+    position: relative;
+    top: 25px;
   }
 }
