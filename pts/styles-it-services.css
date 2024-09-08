@@ -293,11 +293,16 @@ ul{
 
 }
 
+.hamburger{
+  display:none;
+}
+
 @media (max-width: 960px) {
   .topnav a{
     display: none;
   }
   .hamburger{
+    display:block;
     color:white;
     font-size:60px;
     cursor:pointer; 
@@ -309,5 +314,9 @@ ul{
   .navbar-logo-container{
     position: relative;
     top: 25px;
+  }
+
+  .banner-header{
+    font-size: x-large;
   }
 }
