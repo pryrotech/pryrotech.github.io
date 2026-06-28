@@ -30,18 +30,17 @@
             color: var(--text-main);
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             min-height: 100vh;
-            padding: 20px;
+            padding: 10px;
         }
 
         .container {
             display: grid;
             grid-template-columns: 1fr 420px;
-            gap: 20px;
+            gap: 16px;
             width: 100%;
             max-width: 1250px;
-            height: 780px;
         }
 
         .plotter-panel {
@@ -55,24 +54,28 @@
             align-items: center;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            padding: 45px 10px 60px 10px;
         }
 
         .status-bar {
             position: absolute;
             top: 15px;
-            left: 20px;
+            left: 15px;
             color: var(--primary);
             font-weight: bold;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             letter-spacing: 1px;
             z-index: 10;
+            right: 15px;
+            text-align: left;
         }
 
         .canvas-container {
             position: relative;
-            width: 600px;
-            height: 600px;
+            width: 100%;
+            max-width: 600px;
+            aspect-ratio: 1 / 1;
             cursor: crosshair;
         }
 
@@ -82,53 +85,53 @@
             left: 0;
             width: 100%;
             height: 100%;
+            touch-action: none;
         }
 
         .control-panel-form {
             background-color: var(--panel-bg);
             border: 2px solid var(--border-color);
             border-radius: 12px;
-            padding: 24px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
-            gap: 18px;
+            gap: 16px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            overflow-y: auto;
         }
 
         h2 {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--primary);
             border-bottom: 2px solid var(--border-color);
-            padding-bottom: 8px;
+            padding-bottom: 6px;
         }
 
         .mission-box {
             background-color: rgba(56, 189, 248, 0.05);
             border: 1px dashed var(--primary);
             border-radius: 8px;
-            padding: 16px;
+            padding: 14px;
         }
 
         .mission-signal {
             font-family: 'Courier New', Courier, monospace;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-weight: bold;
             color: var(--guide-color);
             margin-top: 6px;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
 
         .form-group {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
         }
 
         label {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
             text-transform: uppercase;
             color: var(--text-muted);
@@ -140,10 +143,11 @@
             background-color: var(--bg-space);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            padding: 10px;
+            padding: 12px;
             border-radius: 6px;
             font-size: 1rem;
             outline: none;
+            -webkit-appearance: none;
         }
 
         .btn-action {
@@ -157,6 +161,7 @@
             text-transform: uppercase;
             cursor: pointer;
             transition: background-color 0.2s;
+            min-height: 48px;
         }
 
         .btn-action:hover {
@@ -165,30 +170,26 @@
 
         .btn-inline-clear {
             position: absolute;
-            bottom: 15px;
-            right: 20px;
+            bottom: 12px;
+            right: 15px;
             background: rgba(239, 68, 68, 0.1);
             color: var(--error);
             border: 1px solid var(--error);
-            padding: 6px 12px;
+            padding: 8px 14px;
             border-radius: 4px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: bold;
             text-transform: uppercase;
             cursor: pointer;
             z-index: 10;
             transition: all 0.2s;
-        }
-
-        .btn-inline-clear:hover {
-            background: var(--error);
-            color: #ffffff;
+            min-height: 36px;
         }
 
         .feedback-box {
             border-radius: 8px;
-            padding: 14px;
-            font-size: 0.95rem;
+            padding: 12px;
+            font-size: 0.9rem;
             display: none;
             line-height: 1.4;
         }
@@ -206,6 +207,18 @@
             border: 1px solid var(--error);
             color: #fee2e2;
         }
+
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            body {
+                padding: 8px;
+            }
+            .plotter-panel {
+                padding: 45px 5px 55px 5px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -216,7 +229,7 @@
         <div class="canvas-container" id="canvasContainer">
             <canvas id="tacticalCanvas" width="600" height="600"></canvas>
         </div>
-        <button type="button" class="btn-inline-clear" id="clearBtn">Reset Current Plot</button>
+        <button type="button" class="btn-inline-clear" id="clearBtn">Reset Plot</button>
     </div>
 
     <form class="control-panel-form" id="evalForm">
@@ -224,7 +237,7 @@
         
         <div class="mission-box">
             <label>Current Tasking Directive</label>
-            <div style="font-size: 0.9rem; color: var(--text-main); margin-top: 4px;" id="missionDesc">Loading operational directive...</div>
+            <div style="font-size: 0.85rem; color: var(--text-main); margin-top: 4px;" id="missionDesc">Loading operational directive...</div>
             <div class="mission-signal" id="missionSignal">--- ---</div>
         </div>
 
@@ -273,23 +286,62 @@
     const feedbackBox = document.getElementById('feedbackBox');
     const clearBtn = document.getElementById('clearBtn');
 
-    // Scenario Generation Trackers
     let currentTask = {};
     let plottedShips = [];
     const maxShips = 4;
     const center = 300;
     const radius = 240;
 
-    // Explicit structural directions limits matching requested bearings
     const cardinalBearings = [0, 45, 90, 135, 180, 225, 270, 315];
 
+    // Expanded matrix utilizing all 8 distinct compass headers and maneuver classes
     const testDirectives = [
         { type: 'TURN', dir: 'STBD', amt: 90, initForm: 'column', initHead: 0,   label: 'TURN STBD 090', expectHead: 90,  expectForm: 'abreast', expectGuide: 1 },
         { type: 'TURN', dir: 'PORT', amt: 45, initForm: 'column', initHead: 180, label: 'TURN PORT 045', expectHead: 135, expectForm: 'abreast', expectGuide: 1 },
         { type: 'CORPEN', dir: 'STBD', amt: 45, initForm: 'column', initHead: 270, label: 'CORPEN STBD 045', expectHead: 315, expectForm: 'column',  expectGuide: 1 },
         { type: 'FORM', dir: 'STBD', amt: 90, initForm: 'column', initHead: 90,  label: 'FORM 090',  expectHead: 90,  expectForm: 'abreast', expectGuide: 1 },
-        { type: 'TURN', dir: 'STBD', amt: 180, initForm: 'column', initHead: 270, label: 'TURN 180',       expectHead: 90,  expectForm: 'column',  expectGuide: 1 }
+        { type: 'TURN', dir: 'STBD', amt: 180, initForm: 'column', initHead: 270, label: 'TURN 180',       expectHead: 90,  expectForm: 'column',  expectGuide: 1 },
+        
+        // Diagonal and Cardinal expanded configurations
+        { type: 'FORM', dir: 'PORT', amt: 0, initForm: 'column', initHead: 45,  label: 'FORM 045',  expectHead: 45,  expectForm: 'abreast', expectGuide: 1 },
+        { type: 'TURN', dir: 'PORT', amt: 90, initForm: 'column', initHead: 315, label: 'TURN PORT 090', expectHead: 225, expectForm: 'abreast', expectGuide: 1 },
+        { type: 'CORPEN', dir: 'PORT', amt: 45, initForm: 'column', initHead: 135, label: 'CORPEN PORT 045', expectHead: 90,  expectForm: 'column',  expectGuide: 1 },
+        { type: 'FORM', dir: 'STBD', amt: 0, initForm: 'column', initHead: 225, label: 'FORM 225',  expectHead: 225, expectForm: 'abreast', expectGuide: 1 },
+        { type: 'TURN', dir: 'STBD', amt: 45, initForm: 'column', initHead: 90,  label: 'TURN STBD 045', expectHead: 135, expectForm: 'abreast', expectGuide: 1 }
     ];
+
+    function handleInputCoordinates(clientX, clientY) {
+        if (plottedShips.length >= maxShips) return;
+
+        const rect = canvas.getBoundingClientRect();
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+
+        const x = (clientX - rect.left) * scaleX;
+        const y = (clientY - rect.top) * scaleY;
+
+        plottedShips.push({
+            id: plottedShips.length + 1,
+            x: x,
+            y: y,
+            heading: currentTask.initHead,
+            isGuide: plottedShips.length === 0
+        });
+
+        renderPlotter();
+        updatePlotterStatus();
+    }
+
+    canvasContainer.addEventListener('click', (e) => {
+        handleInputCoordinates(e.clientX, e.clientY);
+    });
+
+    canvasContainer.addEventListener('touchstart', (e) => {
+        if(e.touches.length === 1) {
+            e.preventDefault();
+            handleInputCoordinates(e.touches[0].clientX, e.touches[0].clientY);
+        }
+    }, { passive: false });
 
     function generateScenario() {
         feedbackBox.style.display = "none";
@@ -307,40 +359,20 @@
         renderPlotter();
     }
 
-    canvasContainer.addEventListener('click', (e) => {
-        if (plottedShips.length >= maxShips) return;
-
-        const rect = canvas.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        plottedShips.push({
-            id: plottedShips.length + 1,
-            x: x,
-            y: y,
-            heading: currentTask.initHead,
-            isGuide: plottedShips.length === 0
-        });
-
-        renderPlotter();
-        updatePlotterStatus();
-    });
-
     function updatePlotterStatus() {
         if (plottedShips.length < maxShips) {
-            statusText.textContent = `Click grid workspace to plot Ship ${plottedShips.length + 1}`;
+            statusText.textContent = `Tap grid workspace to plot Ship ${plottedShips.length + 1}`;
             submitBtn.disabled = true;
             submitBtn.style.opacity = "0.5";
             submitBtn.style.cursor = "not-allowed";
         } else {
-            statusText.textContent = "Initial tactical layout fixed. Provide solution matrix.";
+            statusText.textContent = "Initial layout fixed. Complete solution menu.";
             submitBtn.disabled = false;
             submitBtn.style.opacity = "1";
             submitBtn.style.cursor = "pointer";
         }
     }
 
-    // Manual plot correction reset link execution logic
     clearBtn.addEventListener('click', () => {
         plottedShips = [];
         renderPlotter();
@@ -350,7 +382,6 @@
     function renderPlotter() {
         ctx.clearRect(0, 0, 600, 600);
 
-        // Radar ring meshes
         ctx.strokeStyle = '#1e293b';
         ctx.lineWidth = 1;
         for(let r = 60; r <= radius; r += 60) {
@@ -365,7 +396,6 @@
         ctx.lineWidth = 2;
         ctx.stroke();
 
-        // Compass Degrees Labels - Filtered explicitly to requested cardinal/intercardinal bearings
         ctx.fillStyle = '#64748b';
         ctx.font = '12px monospace';
         ctx.textAlign = 'center';
@@ -377,7 +407,6 @@
             ctx.fillText(String(angle).padStart(3, '0'), x, y);
         });
 
-        // Draw instances
         plottedShips.forEach(ship => {
             ctx.save();
             ctx.translate(ship.x, ship.y);
@@ -474,7 +503,6 @@
     });
 
     nextBtn.addEventListener('click', generateScenario);
-
     generateScenario();
 </script>
 
