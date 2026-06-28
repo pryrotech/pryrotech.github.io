@@ -1,3 +1,4 @@
+:Naval Tactical Training & Plotting Board:index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -527,9 +528,9 @@
 
     const cardinalBearings = [0, 45, 90, 135, 180, 225, 270, 315];
 
-    // Core ATP-01 Maneuver Dataset
+    // Expanded ATP-01 Maneuver Workbook (75 unique testing directives)
     const testDirectives = [
-// --- 1. COLUMN START DIRECTIVES (Group A: Heading 000°/North) ---
+        // --- 1. COLUMN START DIRECTIVES (Group A: Heading 000°/North) ---
         { type: 'TURN', label: 'TURN STBD 090', initForm: 'column', initHead: 0, expectHead: 90, expectForm: 'abreast', expectGuide: 1 },
         { type: 'TURN', label: 'TURN PORT 090', initForm: 'column', initHead: 0, expectHead: 270, expectForm: 'abreast', expectGuide: 1 },
         { type: 'TURN', label: 'TURN STBD 45', initForm: 'column', initHead: 0, expectHead: 45, expectForm: 'column', expectGuide: 1 },
@@ -630,7 +631,8 @@
         { type: 'TURN', label: 'TURN STBD 090', initForm: 'abreast', initHead: 270, expectHead: 0, expectForm: 'column', expectGuide: 1 },
         { type: 'CORPEN', label: 'CORPEN PORT 4ANS', initForm: 'abreast', initHead: 270, expectHead: 230, expectForm: 'abreast', expectGuide: 1 },
         { type: 'CORPEN', label: 'CORPEN PORT 45', initForm: 'abreast', initHead: 270, expectHead: 225, expectForm: 'abreast', expectGuide: 1 },
-        { type: 'FORM', label: 'FORM 360', initForm: 'abreast', initHead: 270, expectHead: 270, expectForm: 'column', expectGuide: 1 }];
+        { type: 'FORM', label: 'FORM 360', initForm: 'abreast', initHead: 270, expectHead: 270, expectForm: 'column', expectGuide: 1 }
+    ];
 
     overrideToggle.addEventListener('change', () => {
         if (overrideToggle.checked) {
@@ -793,10 +795,29 @@
         updatePlotterStatus();
     });
 
+    function drawTacticalGuideLine(baseShip, formationStyle, headingValue, color) {
+        if (!baseShip) return;
+        ctx.save();
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([5, 8]);
+        
+        // Under ATP-01 rules, columns align directly with base heading, abreast aligns perpendicular
+        let angleDeg = (formationStyle === 'column') ? headingValue : (headingValue + 90) % 360;
+        let rad = (angleDeg - 90) * Math.PI / 180;
+        
+        // Draw standard bidirectional guidelines along the alignment axis
+        ctx.beginPath();
+        ctx.moveTo(baseShip.x - Math.cos(rad) * 300, baseShip.y - Math.sin(rad) * 300);
+        ctx.lineTo(baseShip.x + Math.cos(rad) * 300, baseShip.y + Math.sin(rad) * 300);
+        ctx.stroke();
+        ctx.restore();
+    }
+
     function renderPlotter() {
         ctx.clearRect(0, 0, 600, 600);
 
-        ctx.strokeStyle = '#1e294b';
+        ctx.strokeStyle = '#1e293b';
         ctx.lineWidth = 1;
         for(let r = 60; r <= radius; r += 60) {
             ctx.beginPath();
@@ -820,6 +841,15 @@
             let y = center + (radius + 20) * Math.sin(rad);
             ctx.fillText(String(angle).padStart(3, '0'), x, y);
         });
+
+        // Smart Guide Vector Projection: Projects a line showing the exact axis path expected
+        if (activePhase === 'initial' && initialShips.length > 0) {
+            let leadShip = initialShips.find(s => s.id === 1) || initialShips[0];
+            drawTacticalGuideLine(leadShip, currentTask.initForm, currentTask.initHead, 'rgba(56, 189, 248, 0.25)');
+        } else if (activePhase === 'predicted' && predictedShips.length > 0) {
+            let leadShip = predictedShips.find(s => s.id === 1) || predictedShips[0];
+            drawTacticalGuideLine(leadShip, currentTask.expectForm, currentTask.expectHead, 'rgba(168, 85, 247, 0.25)');
+        }
 
         initialShips.forEach(ship => {
             ctx.save();
@@ -924,13 +954,28 @@
         return correctShips;
     }
 
+    // Mathematical verification with massive alignment tolerance (75°) and smart distance sorting
     function verifyFormationArray(shipsList, expectedForm, expectedHeading) {
         if (shipsList.length < maxShips) return false;
 
-        const sorted = [...shipsList].sort((a,b) => a.id - b.id);
+        // Sort by spatial coordinates along alignment vector rather than arbitrary input order
+        let alignmentAngle = (expectedForm === 'column') ? expectedHeading : (expectedHeading + 90) % 360;
+        let rad = (alignmentAngle - 90) * Math.PI / 180;
+        
+        // Project coordinates onto the expected unit vector to reliably find the terminal coordinates
+        const sorted = [...shipsList].sort((a, b) => {
+            let projectionA = a.x * Math.cos(rad) + a.y * Math.sin(rad);
+            let projectionB = b.x * Math.cos(rad) + b.y * Math.sin(rad);
+            return projectionA - projectionB;
+        });
+
         const dx = sorted[maxShips - 1].x - sorted[0].x;
         const dy = sorted[maxShips - 1].y - sorted[0].y;
         
+        // Simple sanity check: user must show a general line spread
+        let spreadDistance = Math.sqrt(dx*dx + dy*dy);
+        if (spreadDistance < 40) return false; // Rejected if grouped on a single point
+
         let plottedDeg = (Math.atan2(dy, dx) * 180 / Math.PI + 360) % 360;
         let truePlottedBearing = (plottedDeg + 90) % 360;
 
@@ -939,7 +984,9 @@
         let diff = Math.abs((truePlottedBearing % 180) - (expectedLineBearing % 180));
         if (diff > 90) diff = 180 - diff;
 
-        return diff <= 32; 
+        // Extremely generous tolerance of 75 degrees! 
+        // Ensures anything representing the correct axis quadrant passes.
+        return diff <= 75; 
     }
 
     evalForm.addEventListener('submit', (e) => {
@@ -954,14 +1001,14 @@
 
         if (!verifyFormationArray(initialShips, currentTask.initForm, currentTask.initHead)) {
             pass = false;
-            auditTrail.push(`❌ <b>Initial Plot:</b> Starting alignment coordinates do not match a clean, parallel ${currentTask.initForm.toUpperCase()} layout heading ${currentTask.initHead}°T.`);
+            auditTrail.push(`❌ <b>Initial Plot:</b> Setup alignment deviates too far from the expected ${currentTask.initForm.toUpperCase()} orientation on course ${currentTask.initHead}°T.`);
         } else {
             auditTrail.push(`&nbsp; Initial configuration coordinates verified.`);
         }
 
         if (!verifyFormationArray(predictedShips, currentTask.expectForm, currentTask.expectHead)) {
             pass = false;
-            auditTrail.push(`❌ <b>Prediction Plot:</b> Your predicted placement coordinates do not align with a parallel ${currentTask.expectForm.toUpperCase()} layout on predicted heading ${currentTask.expectHead}°T.`);
+            auditTrail.push(`❌ <b>Prediction Plot:</b> Prediction alignment deviates too far from the expected ${currentTask.expectForm.toUpperCase()} orientation on course ${currentTask.expectHead}°T.`);
         } else {
             auditTrail.push(`&nbsp; Predicted coordinates verified.`);
         }
@@ -1020,10 +1067,6 @@
 
     nextBtn.addEventListener('click', generateScenario);
     window.onload = generateScenario;
-</script>
-
-</body>
-</html>
 </script>
 
 </body>
