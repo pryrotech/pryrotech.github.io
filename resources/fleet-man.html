@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naval Tactical Evaluation Plotter</title>
+    <style>
+        :root {
+            --bg-space: #0a0f1d;
+            --panel-bg: #131a30;
+            --border-color: #26355d;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --primary: #38bdf8;
+            --primary-glow: rgba(56, 189, 248, 0.2);
+            --guide-color: #f59e0b;
+            --success: #10b981;
+            --error: #ef4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-space);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 20px;
+            width: 100%;
+            max-width: 1250px;
+            height: 780px;
+        }
+
+        .plotter-panel {
+            background-color: var(--panel-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .status-bar {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            color: var(--primary);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            z-index: 10;
+        }
+
+        .canvas-container {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            cursor: crosshair;
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .control-panel-form {
+            background-color: var(--panel-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            overflow-y: auto;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .mission-box {
+            background-color: rgba(56, 189, 248, 0.05);
+            border: 1px dashed var(--primary);
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .mission-signal {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: var(--guide-color);
+            margin-top: 6px;
+            letter-spacing: 2px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            background-color: var(--bg-space);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .btn-action {
+            background-color: var(--primary);
+            color: var(--bg-space);
+            border: none;
+            padding: 14px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-action:hover {
+            background-color: #5cd0ff;
+        }
+
+        .btn-inline-clear {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--error);
+            border: 1px solid var(--error);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.2s;
+        }
+
+        .btn-inline-clear:hover {
+            background: var(--error);
+            color: #ffffff;
+        }
+
+        .feedback-box {
+            border-radius: 8px;
+            padding: 14px;
+            font-size: 0.95rem;
+            display: none;
+            line-height: 1.4;
+        }
+
+        .feedback-box.pass {
+            display: block;
+            background-color: rgba(16, 185, 129, 0.15);
+            border: 1px solid var(--success);
+            color: #d1fae5;
+        }
+
+        .feedback-box.fail {
+            display: block;
+            background-color: rgba(239, 68, 68, 0.15);
+            border: 1px solid var(--error);
+            color: #fee2e2;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="plotter-panel">
+        <div class="status-bar" id="plotterStatus">Click on grid to plot initial setup...</div>
+        <div class="canvas-container" id="canvasContainer">
+            <canvas id="tacticalCanvas" width="600" height="600"></canvas>
+        </div>
+        <button type="button" class="btn-inline-clear" id="clearBtn">Reset Current Plot</button>
+    </div>
+
+    <form class="control-panel-form" id="evalForm">
+        <h2>Tactical Evaluation</h2>
+        
+        <div class="mission-box">
+            <label>Current Tasking Directive</label>
+            <div style="font-size: 0.9rem; color: var(--text-main); margin-top: 4px;" id="missionDesc">Loading operational directive...</div>
+            <div class="mission-signal" id="missionSignal">--- ---</div>
+        </div>
+
+        <hr style="border-color: var(--border-color);">
+
+        <div class="form-group">
+            <label for="ansHeading">Your Predicted Post-Maneuver Heading (°T)</label>
+            <input type="number" id="ansHeading" name="ansHeading" min="0" max="359" placeholder="e.g. 090" required>
+        </div>
+
+        <div class="form-group">
+            <label for="ansFormation">Your Predicted Final Formation Style</label>
+            <select id="ansFormation" name="ansFormation" required>
+                <option value="">-- Select Layout --</option>
+                <option value="column">Column (Inline)</option>
+                <option value="abreast">Line Abreast (Side-by-Side)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="ansGuide">Which Ship is the Post-Maneuver Guide?</label>
+            <select id="ansGuide" name="ansGuide" required>
+                <option value="">-- Select Hull Identifier --</option>
+                <option value="1">Ship 1</option>
+                <option value="2">Ship 2</option>
+                <option value="3">Ship 3</option>
+                <option value="4">Ship 4</option>
+            </select>
+        </div>
+
+        <div class="feedback-box" id="feedbackBox"></div>
+
+        <button type="submit" class="btn-action" id="submitBtn" disabled style="opacity: 0.5; cursor: not-allowed;">Submit Solutions for Review</button>
+        <button type="button" class="btn-action" id="nextBtn" style="background-color: var(--panel-bg); color: var(--primary); border: 1px solid var(--primary); display:none;">Generate Next Problem</button>
+    </form>
+</div>
+
+<script>
+    const canvas = document.getElementById('tacticalCanvas');
+    const ctx = canvas.getContext('2d');
+    const canvasContainer = document.getElementById('canvasContainer');
+    const evalForm = document.getElementById('evalForm');
+    const statusText = document.getElementById('plotterStatus');
+    const submitBtn = document.getElementById('submitBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const feedbackBox = document.getElementById('feedbackBox');
+    const clearBtn = document.getElementById('clearBtn');
+
+    // Scenario Generation Trackers
+    let currentTask = {};
+    let plottedShips = [];
+    const maxShips = 4;
+    const center = 300;
+    const radius = 240;
+
+    // Explicit structural directions limits matching requested bearings
+    const cardinalBearings = [0, 45, 90, 135, 180, 225, 270, 315];
+
+    const testDirectives = [
+        { type: 'TURN', dir: 'STBD', amt: 90, initForm: 'column', initHead: 0,   label: 'TURN STBD 090', expectHead: 90,  expectForm: 'abreast', expectGuide: 1 },
+        { type: 'TURN', dir: 'PORT', amt: 45, initForm: 'column', initHead: 180, label: 'TURN PORT 045', expectHead: 135, expectForm: 'abreast', expectGuide: 1 },
+        { type: 'CORPEN', dir: 'STBD', amt: 45, initForm: 'column', initHead: 270, label: 'CORPEN STBD 045', expectHead: 315, expectForm: 'column',  expectGuide: 1 },
+        { type: 'FORM', dir: 'STBD', amt: 90, initForm: 'column', initHead: 90,  label: 'FORM 090',  expectHead: 90,  expectForm: 'abreast', expectGuide: 1 },
+        { type: 'TURN', dir: 'STBD', amt: 180, initForm: 'column', initHead: 270, label: 'TURN 180',       expectHead: 90,  expectForm: 'column',  expectGuide: 1 }
+    ];
+
+    function generateScenario() {
+        feedbackBox.style.display = "none";
+        nextBtn.style.display = "none";
+        submitBtn.style.display = "block";
+        evalForm.reset();
+        
+        plottedShips = [];
+        currentTask = testDirectives[Math.floor(Math.random() * testDirectives.length)];
+        
+        document.getElementById('missionDesc').textContent = `Plot 4 ships in a ${currentTask.initForm.toUpperCase()} heading ${String(currentTask.initHead).padStart(3, '0')}°T, then solve execution values for:`;
+        document.getElementById('missionSignal').textContent = currentTask.label;
+        
+        updatePlotterStatus();
+        renderPlotter();
+    }
+
+    canvasContainer.addEventListener('click', (e) => {
+        if (plottedShips.length >= maxShips) return;
+
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        plottedShips.push({
+            id: plottedShips.length + 1,
+            x: x,
+            y: y,
+            heading: currentTask.initHead,
+            isGuide: plottedShips.length === 0
+        });
+
+        renderPlotter();
+        updatePlotterStatus();
+    });
+
+    function updatePlotterStatus() {
+        if (plottedShips.length < maxShips) {
+            statusText.textContent = `Click grid workspace to plot Ship ${plottedShips.length + 1}`;
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = "0.5";
+            submitBtn.style.cursor = "not-allowed";
+        } else {
+            statusText.textContent = "Initial tactical layout fixed. Provide solution matrix.";
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = "1";
+            submitBtn.style.cursor = "pointer";
+        }
+    }
+
+    // Manual plot correction reset link execution logic
+    clearBtn.addEventListener('click', () => {
+        plottedShips = [];
+        renderPlotter();
+        updatePlotterStatus();
+    });
+
+    function renderPlotter() {
+        ctx.clearRect(0, 0, 600, 600);
+
+        // Radar ring meshes
+        ctx.strokeStyle = '#1e293b';
+        ctx.lineWidth = 1;
+        for(let r = 60; r <= radius; r += 60) {
+            ctx.beginPath();
+            ctx.arc(center, center, r, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+
+        ctx.beginPath();
+        ctx.arc(center, center, radius, 0, Math.PI * 2);
+        ctx.strokeStyle = '#26355d';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // Compass Degrees Labels - Filtered explicitly to requested cardinal/intercardinal bearings
+        ctx.fillStyle = '#64748b';
+        ctx.font = '12px monospace';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        cardinalBearings.forEach(angle => {
+            let rad = (angle - 90) * Math.PI / 180;
+            let x = center + (radius + 20) * Math.cos(rad);
+            let y = center + (radius + 20) * Math.sin(rad);
+            ctx.fillText(String(angle).padStart(3, '0'), x, y);
+        });
+
+        // Draw instances
+        plottedShips.forEach(ship => {
+            ctx.save();
+            ctx.translate(ship.x, ship.y);
+            ctx.rotate((ship.heading - 90) * Math.PI / 180);
+
+            ctx.fillStyle = ship.isGuide ? '#f59e0b' : '#38bdf8';
+            ctx.beginPath();
+            ctx.moveTo(14, 0);       
+            ctx.lineTo(-6, -7);     
+            ctx.lineTo(-10, 0);     
+            ctx.lineTo(-6, 7);      
+            ctx.closePath();
+            ctx.fill();
+
+            if (ship.isGuide) {
+                ctx.strokeStyle = 'rgba(245, 158, 11, 0.4)';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(0, 0, 16, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+
+            ctx.rotate(-(ship.heading - 90) * Math.PI / 180);
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 10px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(ship.id, 0, -18);
+            ctx.restore();
+        });
+    }
+
+    evalForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const userHeading = parseInt(document.getElementById('ansHeading').value);
+        const userForm = document.getElementById('ansFormation').value;
+        const userGuide = parseInt(document.getElementById('ansGuide').value);
+
+        let pass = true;
+        let auditTrail = [];
+
+        if (userHeading !== currentTask.expectHead) {
+            pass = false;
+            auditTrail.push(`❌ <b>Heading Error:</b> Expected ${currentTask.expectHead}°T, but you submitted ${userHeading}°T.`);
+        } else {
+            auditTrail.push(`&nbsp; Heading verified successfully.`);
+        }
+
+        if (userForm !== currentTask.expectForm) {
+            pass = false;
+            auditTrail.push(`❌ <b>Formation Error:</b> Command sequence structures a ${currentTask.expectForm.toUpperCase()} layout.`);
+        } else {
+            auditTrail.push(`&nbsp; Structural deployment geometry verified.`);
+        }
+
+        if (userGuide !== currentTask.expectGuide) {
+            pass = false;
+            auditTrail.push(`❌ <b>Guide Assignment Error:</b> Ship ${currentTask.expectGuide} acts as the primary operational anchor.`);
+        } else {
+            auditTrail.push(`&nbsp; Command Guide tracking verified.`);
+        }
+
+        feedbackBox.className = "feedback-box " + (pass ? "pass" : "fail");
+        feedbackBox.innerHTML = (pass ? "<b>★ ALL SYSTEM CHECKS GREEN ★</b><br>Maneuver mapped flawlessly to operational specs." : "<b>⚠️ ASSESSMENT DISCREPANCIES LOGGED:</b><br>") + "<br>" + auditTrail.join("<br>");
+        feedbackBox.style.display = "block";
+
+        let spacing = 45;
+        let rad = (currentTask.expectHead - 90) * Math.PI / 180;
+        let offset = (currentTask.expectForm === 'abreast') ? Math.PI / 2 : 0;
+
+        plottedShips.forEach((ship, idx) => {
+            if (currentTask.type === 'FORM') {
+                if(idx > 0) {
+                    ship.x = plottedShips[0].x + Math.cos(rad + offset) * (idx * spacing);
+                    ship.y = plottedShips[0].y + Math.sin(rad + offset) * (idx * spacing);
+                }
+                ship.heading = currentTask.expectHead;
+            } else if (currentTask.type === 'TURN') {
+                ship.heading = currentTask.expectHead;
+                if(idx > 0) {
+                    let initRad = (currentTask.initHead - 90) * Math.PI / 180;
+                    ship.x = plottedShips[0].x + Math.cos(initRad + Math.PI) * (idx * spacing);
+                    ship.y = plottedShips[0].y + Math.sin(initRad + Math.PI) * (idx * spacing);
+                }
+            } else { 
+                ship.heading = currentTask.expectHead;
+            }
+        });
+        renderPlotter();
+
+        submitBtn.style.display = "none";
+        nextBtn.style.display = "block";
+    });
+
+    nextBtn.addEventListener('click', generateScenario);
+
+    generateScenario();
+</script>
+
+</body>
+</html>
