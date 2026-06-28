@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATP-01 Vol II Naval Tactical Trainer</title>
+    <title>ATP-01 Vol II Two-Phase Tactical Plotter</title>
     <style>
         :root {
-            --bg-space: #070a13;
-            --panel-bg: #0f1526;
-            --border-color: #1e294b;
-            --text-main: #f1f5f9;
-            --text-muted: #64748b;
+            --bg-space: #030712;
+            --panel-bg: #0b1120;
+            --border-color: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
             --primary: #38bdf8;
             --primary-glow: rgba(56, 189, 248, 0.15);
             --guide-color: #f59e0b;
@@ -34,16 +34,22 @@
             align-items: flex-start;
             min-height: 100vh;
             padding: 16px;
+            overflow-x: hidden;
         }
 
         .container {
-            display: grid;
-            grid-template-columns: 1fr 450px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
             gap: 20px;
             width: 100%;
-            max-width: 1300px;
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
+        /* Tactical Plotting Box */
         .plotter-panel {
             background-color: var(--panel-bg);
             border: 2px solid var(--border-color);
@@ -54,33 +60,55 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-            padding: 60px 20px;
-            min-height: 580px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            padding: 60px 16px 80px 16px;
+            flex: 1 1 480px;
+            max-width: 540px;
+            width: 100%;
         }
 
         .status-bar {
             position: absolute;
-            top: 20px;
-            left: 20px;
+            top: 16px;
+            left: 16px;
+            right: 16px;
             color: var(--primary);
             font-weight: bold;
             text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1.5px;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
             z-index: 10;
-            right: 20px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .phase-indicator {
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid var(--primary);
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            color: var(--primary);
+            white-space: nowrap;
+        }
+
+        .phase-indicator.predicting {
+            background: rgba(168, 85, 247, 0.1);
+            border-color: var(--accent);
+            color: var(--accent);
         }
 
         .canvas-container {
             position: relative;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, #0e172e 0%, #070a13 100%);
+            width: 100%;
+            max-width: 440px;
+            aspect-ratio: 1 / 1;
+            background: radial-gradient(circle, #0f172a 0%, #030712 100%);
             border-radius: 50%;
             box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         canvas {
@@ -93,6 +121,7 @@
             cursor: crosshair;
         }
 
+        /* Control Form Panel */
         .control-panel-form {
             background-color: var(--panel-bg);
             border: 2px solid var(--border-color);
@@ -101,13 +130,16 @@
             display: flex;
             flex-direction: column;
             gap: 16px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            flex: 1 1 400px;
+            max-width: 500px;
+            width: 100%;
         }
 
         h2 {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             color: var(--primary);
             border-bottom: 2px solid var(--border-color);
             padding-bottom: 8px;
@@ -117,7 +149,7 @@
         }
 
         .score-tracker {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--guide-color);
             font-family: monospace;
         }
@@ -131,19 +163,19 @@
 
         .mission-signal {
             font-family: 'Courier New', Courier, monospace;
-            font-size: 1.7rem;
+            font-size: 1.5rem;
             font-weight: bold;
             color: var(--guide-color);
             margin-top: 8px;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .maneuver-badge {
-            font-size: 0.75rem;
-            padding: 3px 8px;
+            font-size: 0.7rem;
+            padding: 3px 6px;
             border-radius: 4px;
             background: rgba(168, 85, 247, 0.2);
             color: var(--accent);
@@ -152,10 +184,10 @@
         }
 
         .setup-config {
-            background-color: rgba(255, 255, 255, 0.02);
+            background-color: rgba(255, 255, 255, 0.01);
             border: 1px solid var(--border-color);
             border-radius: 10px;
-            padding: 14px;
+            padding: 12px;
             display: flex;
             flex-direction: column;
             gap: 10px;
@@ -171,8 +203,8 @@
         .override-toggle {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 0.8rem;
+            gap: 6px;
+            font-size: 0.75rem;
             cursor: pointer;
             color: var(--text-muted);
         }
@@ -188,16 +220,16 @@
         .ship-selector-btn-group {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
+            gap: 6px;
         }
 
         .ship-select-btn {
             background-color: var(--bg-space);
             border: 1px solid var(--border-color);
             color: var(--text-muted);
-            padding: 6px;
+            padding: 8px 4px;
             border-radius: 6px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.2s;
@@ -215,18 +247,12 @@
             gap: 6px;
         }
 
-        .form-inline-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
         label {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 600;
             text-transform: uppercase;
             color: var(--text-muted);
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
         select, input[type="number"] {
@@ -234,9 +260,9 @@
             background-color: var(--bg-space);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            padding: 11px;
+            padding: 10px;
             border-radius: 8px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             outline: none;
             transition: all 0.2s;
         }
@@ -250,31 +276,31 @@
             background-color: var(--primary);
             color: var(--bg-space);
             border: none;
-            padding: 14px;
+            padding: 12px;
             border-radius: 8px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: bold;
             text-transform: uppercase;
             cursor: pointer;
             transition: all 0.2s;
-            min-height: 50px;
+            min-height: 44px;
         }
 
         .btn-action:hover {
             background-color: #5cd0ff;
-            box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
         }
 
         .btn-inline-clear {
             position: absolute;
             bottom: 15px;
-            right: 20px;
-            background: rgba(239, 68, 68, 0.15);
+            left: 16px;
+            background: rgba(239, 68, 68, 0.1);
             color: var(--error);
             border: 1px solid var(--error);
-            padding: 8px 16px;
+            padding: 8px 12px;
             border-radius: 6px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: bold;
             text-transform: uppercase;
             cursor: pointer;
@@ -287,26 +313,47 @@
             color: #ffffff;
         }
 
+        .btn-phase-lock {
+            position: absolute;
+            bottom: 15px;
+            right: 16px;
+            background-color: var(--primary);
+            color: var(--bg-space);
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.2s;
+        }
+
+        .btn-phase-lock:hover {
+            background-color: #5cd0ff;
+        }
+
         .feedback-box {
             border-radius: 10px;
             padding: 14px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             display: none;
-            line-height: 1.5;
+            line-height: 1.4;
             background: rgba(255,255,255,0.01);
             border: 1px solid var(--border-color);
         }
 
         .feedback-box.pass {
             display: block;
-            background-color: rgba(16, 185, 129, 0.1);
+            background-color: rgba(16, 185, 129, 0.08);
             border-color: var(--success);
             color: #d1fae5;
         }
 
         .feedback-box.fail {
             display: block;
-            background-color: rgba(239, 68, 68, 0.1);
+            background-color: rgba(239, 68, 68, 0.08);
             border-color: var(--error);
             color: #fee2e2;
         }
@@ -314,7 +361,7 @@
         .modal {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(7, 10, 19, 0.85);
+            background: rgba(3, 7, 18, 0.9);
             display: none;
             justify-content: center;
             align-items: center;
@@ -325,41 +372,33 @@
         .modal-content {
             background: var(--panel-bg);
             border: 2px solid var(--border-color);
-            padding: 30px;
+            padding: 24px;
             border-radius: 16px;
-            max-width: 500px;
+            max-width: 440px;
             width: 100%;
             text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
         }
 
         .btn-modal {
             background-color: var(--primary);
             color: var(--bg-space);
-            padding: 10px 24px;
+            padding: 8px 20px;
             border: none;
             border-radius: 6px;
             font-weight: bold;
             cursor: pointer;
             text-transform: uppercase;
+            font-size: 0.85rem;
         }
 
-        @media (max-width: 950px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-            body {
-                padding: 10px;
-            }
+        @media (max-width: 550px) {
             .plotter-panel {
-                padding: 55px 5px 65px 5px;
-                min-height: auto;
+                padding-top: 50px;
+                padding-bottom: 70px;
             }
             .canvas-container {
-                width: 100%;
-                max-width: 450px;
-                height: auto;
-                aspect-ratio: 1 / 1;
+                max-width: 100%;
             }
         }
     </style>
@@ -368,24 +407,26 @@
 
 <div class="container">
     <div class="plotter-panel">
-        <div class="status-bar" id="plotterStatus">
-            <span>Tap grid to plot initial setup...</span>
+        <div class="status-bar">
+            <span id="plotterStatus">Plotting Setup...</span>
+            <span class="phase-indicator" id="phaseIndicator">Step 1: Initial Plot</span>
         </div>
         <div class="canvas-container" id="canvasContainer">
             <canvas id="tacticalCanvas" width="600" height="600"></canvas>
         </div>
-        <button type="button" class="btn-inline-clear" id="clearBtn">Reset Plot</button>
+        <button type="button" class="btn-inline-clear" id="clearBtn">Clear Step</button>
+        <button type="button" class="btn-phase-lock" id="phaseLockBtn" style="display: none;">Lock & Plot Prediction</button>
     </div>
 
     <form class="control-panel-form" id="evalForm">
         <h2>
-            FLEET MANEUVRES
+            Tactical Maneuver Plotter
             <span class="score-tracker" id="scoreDisplay">SCORE: 0/0</span>
         </h2>
         
         <div class="mission-box">
-            <label>Operational Order</label>
-            <div style="font-size: 0.9rem; color: var(--text-main); margin-top: 6px; line-height: 1.4;" id="missionDesc">Generating Tactical Order...</div>
+            <label>ATP-01 Tactical Order</label>
+            <div style="font-size: 0.85rem; color: var(--text-main); margin-top: 4px; line-height: 1.4;" id="missionDesc">Generating Tactical Order...</div>
             <div class="mission-signal" id="missionSignal">
                 <span id="signalText">--- ---</span>
                 <span class="maneuver-badge" id="maneuverType">INIT</span>
@@ -394,17 +435,17 @@
 
         <div class="setup-config">
             <div class="override-row">
-                <label>Plotting Control</label>
+                <label>Plotting Options</label>
                 <div class="override-toggle" id="overrideLabel">
                     <input type="checkbox" id="overrideToggle">
-                    <span id="toggleText">Manual Designation Override</span>
+                    <span id="toggleText">Manual Override</span>
                 </div>
             </div>
             
             <div class="form-group" id="manualPlotterControls" style="display: none;">
-                <label>Select Ship Designation To Place</label>
+                <label>Active Hull Assignment</label>
                 <div class="ship-selector-btn-group">
-                    <button type="button" class="ship-select-btn active" data-ship="1">Ship 1 (Lead/G)</button>
+                    <button type="button" class="ship-select-btn active" data-ship="1">Ship 1 (Lead)</button>
                     <button type="button" class="ship-select-btn" data-ship="2">Ship 2</button>
                     <button type="button" class="ship-select-btn" data-ship="3">Ship 3</button>
                     <button type="button" class="ship-select-btn" data-ship="4">Ship 4</button>
@@ -449,7 +490,7 @@
 <div class="modal" id="infoModal">
     <div class="modal-content">
         <h3 id="modalTitle">Plotting Evaluation</h3>
-        <p id="modalBody" style="margin: 15px 0 25px 0; line-height: 1.5;"></p>
+        <p id="modalBody" style="margin: 15px 0 25px 0; line-height: 1.5; color: var(--text-muted);"></p>
         <button type="button" class="btn-modal" onclick="closeModal()">Acknowledge</button>
     </div>
 </div>
@@ -464,14 +505,18 @@
     const nextBtn = document.getElementById('nextBtn');
     const feedbackBox = document.getElementById('feedbackBox');
     const clearBtn = document.getElementById('clearBtn');
+    const phaseLockBtn = document.getElementById('phaseLockBtn');
     const scoreDisplay = document.getElementById('scoreDisplay');
     const overrideToggle = document.getElementById('overrideToggle');
     const overrideLabel = document.getElementById('overrideLabel');
     const manualPlotterControls = document.getElementById('manualPlotterControls');
     const shipSelectBtns = document.querySelectorAll('.ship-select-btn');
+    const phaseIndicator = document.getElementById('phaseIndicator');
 
     let currentTask = {};
-    let plottedShips = [];
+    let initialShips = [];
+    let predictedShips = [];
+    let activePhase = 'initial'; // 'initial' | 'predicted' | 'review'
     const maxShips = 4;
     const center = 300;
     const radius = 240;
@@ -482,27 +527,21 @@
 
     const cardinalBearings = [0, 45, 90, 135, 180, 225, 270, 315];
 
-    // True maneuvers matching ATP-01 signaling rules
+    // Core ATP-01 Maneuver Dataset
     const testDirectives = [
-        // TURN: simultanous, course changes, relative formation style flips on 90 degree turns
         { type: 'TURN', label: 'TURN STBD 090', initForm: 'column', initHead: 0, expectHead: 90, expectForm: 'abreast', expectGuide: 1 },
         { type: 'TURN', label: 'TURN PORT 090', initForm: 'column', initHead: 180, expectHead: 90, expectForm: 'abreast', expectGuide: 1 },
-        { type: 'TURN', label: 'TURN PORT 045', initForm: 'column', initHead: 0, expectHead: 315, expectForm: 'column', expectGuide: 1 }, // Turn < 90 keeps relative column mostly intact 
+        { type: 'TURN', label: 'TURN PORT 045', initForm: 'column', initHead: 0, expectHead: 315, expectForm: 'column', expectGuide: 1 },
         { type: 'TURN', label: 'TURN 180', initForm: 'column', initHead: 90, expectHead: 270, expectForm: 'column', expectGuide: 1 },
-
-        // CORPEN: sequential wheel, course changes, formation style stays IDENTICAL
         { type: 'CORPEN', label: 'CORPEN PORT 270', initForm: 'column', initHead: 0, expectHead: 270, expectForm: 'column', expectGuide: 1 },
         { type: 'CORPEN', label: 'CORPEN STBD 045', initForm: 'column', initHead: 0, expectHead: 45, expectForm: 'column', expectGuide: 1 },
         { type: 'CORPEN', label: 'CORPEN PORT 180', initForm: 'abreast', initHead: 90, expectHead: 270, expectForm: 'abreast', expectGuide: 1 },
-        { type: 'CORPEN', label: 'CORPEN STBD 4ANS', initForm: 'column', initHead: 90, expectHead: 130, expectForm: 'column', expectGuide: 1 }, // Relative 4ANS = +40 degrees
-        { type: 'CORPEN', label: 'CORPEN STBD 1ANS', initForm: 'abreast', initHead: 0, expectHead: 10, expectForm: 'abreast', expectGuide: 1 }, // Search CORPEN 1ANS = +10 degrees
-
-        // FORM: relative bearing alignments alter, course/heading stays EXACTLY IDENTICAL
+        { type: 'CORPEN', label: 'CORPEN STBD 4ANS', initForm: 'column', initHead: 90, expectHead: 130, expectForm: 'column', expectGuide: 1 },
+        { type: 'CORPEN', label: 'CORPEN STBD 1ANS', initForm: 'abreast', initHead: 0, expectHead: 10, expectForm: 'abreast', expectGuide: 1 },
         { type: 'FORM', label: 'FORM 180', initForm: 'column', initHead: 90, expectHead: 90, expectForm: 'abreast', expectGuide: 1 },
         { type: 'FORM', label: 'FORM 090', initForm: 'abreast', initHead: 90, expectHead: 90, expectForm: 'column', expectGuide: 1 }
     ];
 
-    // Toggle overrides
     overrideToggle.addEventListener('change', () => {
         if (overrideToggle.checked) {
             overrideLabel.classList.add('active');
@@ -533,32 +572,35 @@
         document.getElementById('infoModal').style.display = 'none';
     }
 
-    // Handles perfect canvas coordinate mapping factoring viewport resizing scaling
     function handleInputCoordinates(clientX, clientY) {
+        if (activePhase === 'review') return;
+
         const rect = canvas.getBoundingClientRect();
-        
-        // Exact viewport-to-canvas ratio mapping
         const x = (clientX - rect.left) * (canvas.width / rect.width);
         const y = (clientY - rect.top) * (canvas.height / rect.height);
 
-        let targetId = plottedShips.length + 1;
+        let targetList = (activePhase === 'initial') ? initialShips : predictedShips;
+        let targetId = targetList.length + 1;
 
         if (overrideToggle.checked) {
             targetId = selectedShipId;
-            // Clear any previously existing ship matching this ID to overwrite position
-            plottedShips = plottedShips.filter(s => s.id !== targetId);
+            if (activePhase === 'initial') {
+                initialShips = initialShips.filter(s => s.id !== targetId);
+            } else {
+                predictedShips = predictedShips.filter(s => s.id !== targetId);
+            }
         }
 
-        if (!overrideToggle.checked && plottedShips.length >= maxShips) return;
+        if (!overrideToggle.checked && targetList.length >= maxShips) return;
 
-        plottedShips.push({
+        let activeShipsList = (activePhase === 'initial') ? initialShips : predictedShips;
+        activeShipsList.push({
             id: targetId,
             x: x,
             y: y,
-            heading: currentTask.initHead
+            heading: (activePhase === 'initial') ? currentTask.initHead : currentTask.expectHead
         });
 
-        // Automatically cycle selected ship forward to help speed up sequential manual plotting
         if (overrideToggle.checked) {
             let nextIndex = (targetId % 4) + 1;
             shipSelectBtns.forEach(btn => {
@@ -572,10 +614,7 @@
         updatePlotterStatus();
     }
 
-    canvas.addEventListener('mousedown', (e) => {
-        handleInputCoordinates(e.clientX, e.clientY);
-    });
-
+    canvas.addEventListener('mousedown', (e) => handleInputCoordinates(e.clientX, e.clientY));
     canvas.addEventListener('touchstart', (e) => {
         if (e.touches.length === 1) {
             e.preventDefault();
@@ -583,20 +622,40 @@
         }
     }, { passive: false });
 
+    phaseLockBtn.addEventListener('click', () => {
+        if (activePhase === 'initial' && initialShips.length === maxShips) {
+            activePhase = 'predicted';
+            phaseIndicator.textContent = "Step 2: Plot Prediction";
+            phaseIndicator.classList.add('predicting');
+            phaseLockBtn.style.display = 'none';
+            selectedShipId = 1;
+            shipSelectBtns[0].click();
+            updatePlotterStatus();
+            renderPlotter();
+        }
+    });
+
     function generateScenario() {
         feedbackBox.style.display = "none";
         nextBtn.style.display = "none";
         submitBtn.style.display = "block";
+        phaseLockBtn.style.display = 'none';
         evalForm.reset();
         
-        plottedShips = [];
+        initialShips = [];
+        predictedShips = [];
+        activePhase = 'initial';
         selectedShipId = 1;
+        
+        phaseIndicator.textContent = "Step 1: Initial Plot";
+        phaseIndicator.classList.remove('predicting');
+        
         shipSelectBtns.forEach(b => b.classList.remove('active'));
         shipSelectBtns[0].classList.add('active');
 
         currentTask = testDirectives[Math.floor(Math.random() * testDirectives.length)];
         
-        document.getElementById('missionDesc').textContent = `Plot 4 ships starting in a ${currentTask.initForm.toUpperCase()} heading ${String(currentTask.initHead).padStart(3, '0')}°T. Plot Ship 1 (Guide) first.`;
+        document.getElementById('missionDesc').textContent = `1. Plot the initial ${currentTask.initForm.toUpperCase()} layout heading ${String(currentTask.initHead).padStart(3, '0')}°T.\n2. Lock phase, then plot your final predicted locations.`;
         document.getElementById('signalText').textContent = currentTask.label;
         document.getElementById('maneuverType').textContent = currentTask.type;
         
@@ -605,20 +664,41 @@
     }
 
     function updatePlotterStatus() {
-        if (plottedShips.length < maxShips) {
-            let lookingFor = overrideToggle.checked ? selectedShipId : (plottedShips.length + 1);
-            statusText.innerHTML = `<span>Plotting order: <b>Ship ${lookingFor}</b></span>`;
+        if (activePhase === 'initial') {
+            if (initialShips.length < maxShips) {
+                let lookingFor = overrideToggle.checked ? selectedShipId : (initialShips.length + 1);
+                statusText.innerHTML = `<span>Plot Initial: <b>Ship ${lookingFor}</b></span>`;
+                phaseLockBtn.style.display = 'none';
+            } else {
+                statusText.innerHTML = `<span style="color: var(--primary)">Setup plotted. Lock and proceed.</span>`;
+                phaseLockBtn.style.display = 'inline-block';
+            }
             submitBtn.disabled = true;
             submitBtn.style.opacity = "0.5";
+        } else if (activePhase === 'predicted') {
+            if (predictedShips.length < maxShips) {
+                let lookingFor = overrideToggle.checked ? selectedShipId : (predictedShips.length + 1);
+                statusText.innerHTML = `<span>Plot Prediction: <b>Ship ${lookingFor}</b></span>`;
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = "0.5";
+            } else {
+                statusText.innerHTML = `<span style="color: var(--success)">Prediction ready. Submit solutions.</span>`;
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = "1";
+            }
         } else {
-            statusText.innerHTML = `<span style="color: var(--success)">Fleet plotted. Predict maneuver outcome.</span>`;
-            submitBtn.disabled = false;
-            submitBtn.style.opacity = "1";
+            statusText.innerHTML = `<span style="color: var(--accent)">Review Phase.</span>`;
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = "0.5";
         }
     }
 
     clearBtn.addEventListener('click', () => {
-        plottedShips = [];
+        if (activePhase === 'initial') {
+            initialShips = [];
+        } else if (activePhase === 'predicted') {
+            predictedShips = [];
+        }
         renderPlotter();
         updatePlotterStatus();
     });
@@ -626,7 +706,6 @@
     function renderPlotter() {
         ctx.clearRect(0, 0, 600, 600);
 
-        // Grid range circles
         ctx.strokeStyle = '#1e294b';
         ctx.lineWidth = 1;
         for(let r = 60; r <= radius; r += 60) {
@@ -635,14 +714,12 @@
             ctx.stroke();
         }
 
-        // Radar dial ring
         ctx.beginPath();
         ctx.arc(center, center, radius, 0, Math.PI * 2);
         ctx.strokeStyle = '#2d3e72';
         ctx.lineWidth = 2.5;
         ctx.stroke();
 
-        // Compass degree indicators
         ctx.fillStyle = '#475569';
         ctx.font = 'bold 12px monospace';
         ctx.textAlign = 'center';
@@ -654,52 +731,120 @@
             ctx.fillText(String(angle).padStart(3, '0'), x, y);
         });
 
-        // Drawing hulls
-        plottedShips.forEach(ship => {
+        initialShips.forEach(ship => {
             ctx.save();
             ctx.translate(ship.x, ship.y);
             ctx.rotate((ship.heading - 90) * Math.PI / 180);
 
-            ctx.fillStyle = ship.id === 1 ? '#f59e0b' : '#38bdf8';
-            ctx.beginPath();
-            ctx.moveTo(15, 0);       
-            ctx.lineTo(-7, -8);     
-            ctx.lineTo(-11, 0);     
-            ctx.lineTo(-7, 8);      
-            ctx.closePath();
-            ctx.fill();
-
-            if (ship.id === 1) {
-                ctx.strokeStyle = 'rgba(245, 158, 11, 0.5)';
-                ctx.lineWidth = 2.5;
+            if (activePhase !== 'initial') {
+                ctx.strokeStyle = 'rgba(148, 163, 184, 0.25)';
+                ctx.lineWidth = 1.5;
                 ctx.beginPath();
-                ctx.arc(0, 0, 18, 0, Math.PI * 2);
+                ctx.moveTo(15, 0); ctx.lineTo(-7, -8); ctx.lineTo(-11, 0); ctx.lineTo(-7, 8); ctx.closePath();
                 ctx.stroke();
+            } else {
+                ctx.fillStyle = ship.id === 1 ? '#f59e0b' : '#38bdf8';
+                ctx.beginPath();
+                ctx.moveTo(15, 0); ctx.lineTo(-7, -8); ctx.lineTo(-11, 0); ctx.lineTo(-7, 8); ctx.closePath();
+                ctx.fill();
+                if (ship.id === 1) {
+                    ctx.strokeStyle = 'rgba(245, 158, 11, 0.5)';
+                    ctx.lineWidth = 2;
+                    ctx.beginPath(); ctx.arc(0, 0, 18, 0, Math.PI * 2); ctx.stroke();
+                }
             }
 
             ctx.rotate(-(ship.heading - 90) * Math.PI / 180);
-            ctx.fillStyle = '#ffffff';
-            ctx.font = 'bold 11px sans-serif';
+            ctx.fillStyle = (activePhase !== 'initial') ? 'rgba(148, 163, 184, 0.25)' : '#ffffff';
+            ctx.font = 'bold 10px sans-serif';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText(ship.id, 0, -22);
             ctx.restore();
         });
+
+        predictedShips.forEach(ship => {
+            ctx.save();
+            ctx.translate(ship.x, ship.y);
+            ctx.rotate((ship.heading - 90) * Math.PI / 180);
+
+            if (activePhase === 'review') {
+                ctx.strokeStyle = 'rgba(168, 85, 247, 0.6)';
+                ctx.lineWidth = 2;
+                ctx.setLineDash([4, 4]);
+                ctx.beginPath();
+                ctx.moveTo(15, 0); ctx.lineTo(-7, -8); ctx.lineTo(-11, 0); ctx.lineTo(-7, 8); ctx.closePath();
+                ctx.stroke();
+                ctx.setLineDash([]);
+            } else {
+                ctx.fillStyle = ship.id === 1 ? '#e11d48' : '#a855f7';
+                ctx.beginPath();
+                ctx.moveTo(15, 0); ctx.lineTo(-7, -8); ctx.lineTo(-11, 0); ctx.lineTo(-7, 8); ctx.closePath();
+                ctx.fill();
+            }
+
+            ctx.rotate(-(ship.heading - 90) * Math.PI / 180);
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 10px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(`P${ship.id}`, 0, -22);
+            ctx.restore();
+        });
+
+        if (activePhase === 'review') {
+            let correctSolution = getTacticalCorrectPositions();
+            correctSolution.forEach(ship => {
+                ctx.save();
+                ctx.translate(ship.x, ship.y);
+                ctx.rotate((ship.heading - 90) * Math.PI / 180);
+
+                ctx.fillStyle = 'rgba(16, 185, 129, 0.85)';
+                ctx.beginPath();
+                ctx.moveTo(15, 0); ctx.lineTo(-7, -8); ctx.lineTo(-11, 0); ctx.lineTo(-7, 8); ctx.closePath();
+                ctx.fill();
+
+                ctx.rotate(-(ship.heading - 90) * Math.PI / 180);
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 10px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(`✔${ship.id}`, 0, -22);
+                ctx.restore();
+            });
+        }
     }
 
-    // Mathematical verification of starting plot alignment
-    function verifyPlottedFormation() {
-        if (plottedShips.length < maxShips) return false;
+    function getTacticalCorrectPositions() {
+        if (initialShips.length < maxShips) return [];
+        let spacing = 45;
+        let rad = (currentTask.expectHead - 90) * Math.PI / 180;
+        let sortedInit = [...initialShips].sort((a,b) => a.id - b.id);
+        
+        let correctShips = JSON.parse(JSON.stringify(sortedInit));
 
-        const sorted = [...plottedShips].sort((a,b) => a.id - b.id);
+        correctShips.forEach((ship, idx) => {
+            ship.heading = currentTask.expectHead;
+            if (idx > 0) {
+                let offset = (currentTask.expectForm === 'abreast') ? Math.PI / 2 : 0;
+                ship.x = correctShips[0].x + Math.cos(rad + offset) * (idx * spacing);
+                ship.y = correctShips[0].y + Math.sin(rad + offset) * (idx * spacing);
+            }
+        });
+        return correctShips;
+    }
+
+    function verifyFormationArray(shipsList, expectedForm, expectedHeading) {
+        if (shipsList.length < maxShips) return false;
+
+        const sorted = [...shipsList].sort((a,b) => a.id - b.id);
         const dx = sorted[maxShips - 1].x - sorted[0].x;
         const dy = sorted[maxShips - 1].y - sorted[0].y;
         
         let plottedDeg = (Math.atan2(dy, dx) * 180 / Math.PI + 360) % 360;
         let truePlottedBearing = (plottedDeg + 90) % 360;
 
-        const expectedBaseHeading = currentTask.initHead;
-        let expectedLineBearing = (currentTask.initForm === 'column') ? expectedBaseHeading : (expectedBaseHeading + 90) % 180;
+        let expectedLineBearing = (expectedForm === 'column') ? expectedHeading : (expectedHeading + 90) % 180;
 
         let diff = Math.abs((truePlottedBearing % 180) - (expectedLineBearing % 180));
         if (diff > 90) diff = 180 - diff;
@@ -717,78 +862,78 @@
         let pass = true;
         let auditTrail = [];
 
-        // 1. Check Initial Layout Drawing accuracy
-        if (!verifyPlottedFormation()) {
+        if (!verifyFormationArray(initialShips, currentTask.initForm, currentTask.initHead)) {
             pass = false;
-            auditTrail.push(`❌ <b>Initial Plotting Discrepancy:</b> Your plotted coordinate points do not align with a ${currentTask.initForm.toUpperCase()} heading ${currentTask.initHead}°T.`);
+            auditTrail.push(`❌ <b>Initial Plot:</b> Starting alignment coordinates do not match a clean, parallel ${currentTask.initForm.toUpperCase()} layout heading ${currentTask.initHead}°T.`);
         } else {
-            auditTrail.push(`&nbsp; Initial layout coordinates verified.`);
+            auditTrail.push(`&nbsp; Initial configuration coordinates verified.`);
         }
 
-        // 2. Predict Destination Course
+        if (!verifyFormationArray(predictedShips, currentTask.expectForm, currentTask.expectHead)) {
+            pass = false;
+            auditTrail.push(`❌ <b>Prediction Plot:</b> Your predicted placement coordinates do not align with a parallel ${currentTask.expectForm.toUpperCase()} layout on predicted heading ${currentTask.expectHead}°T.`);
+        } else {
+            auditTrail.push(`&nbsp; Predicted coordinates verified.`);
+        }
+
         if (userHeading !== currentTask.expectHead) {
             pass = false;
             if (currentTask.type === 'FORM') {
-                auditTrail.push(`❌ <b>Heading Deviation:</b> Predicted heading is incorrect. Under ATP-01 rules, <b>FORM</b> signals adjust relative geometry positions but leave the actual ship heading completely unaltered.`);
+                auditTrail.push(`❌ <b>Heading Predictor:</b> Incorrect. Under ATP-01 guidelines, <b>FORM</b> commands modify layout structures but leave base steering headings completely unchanged.`);
             } else {
-                auditTrail.push(`❌ <b>Heading Deviation:</b> Target heading is ${currentTask.expectHead}°T.`);
+                auditTrail.push(`❌ <b>Heading Predictor:</b> Final course outcome is ${currentTask.expectHead}°T.`);
             }
         } else {
             auditTrail.push(`&nbsp; Post-Maneuver Fleet Heading verified.`);
         }
 
-        // 3. Predict Formation style outcome
         if (userForm !== currentTask.expectForm) {
             pass = false;
             if (currentTask.type === 'CORPEN') {
-                auditTrail.push(`❌ <b>Formation Style Error:</b> Under ATP-01 rules, <b>CORPEN</b> maneuvers wheel the fleet course but explicitly preserve the relative formation layout style (${currentTask.expectForm.toUpperCase()}).`);
+                auditTrail.push(`❌ <b>Formation Style Predictor:</b> Under ATP-01 guidelines, <b>CORPEN</b> maneuvers wheel the course but preserve the existing relative layout style (${currentTask.expectForm.toUpperCase()}).`);
             } else if (currentTask.type === 'TURN') {
-                auditTrail.push(`❌ <b>Formation Style Error:</b> Under ATP-01 rules, a <b>TURN</b> causes all ships to pivot simultaneously, rotating the structural style into a ${currentTask.expectForm.toUpperCase()} relative to the new heading.`);
+                auditTrail.push(`❌ <b>Formation Style Predictor:</b> A simultaneous <b>TURN</b> causes all ships to pivot together, rotating the structural geometry into a ${currentTask.expectForm.toUpperCase()} layout.`);
             } else {
-                auditTrail.push(`❌ <b>Formation Style Error:</b> Geometry change requires a ${currentTask.expectForm.toUpperCase()} layout.`);
+                auditTrail.push(`❌ <b>Formation Style Predictor:</b> Geometry changes require a ${currentTask.expectForm.toUpperCase()} layout.`);
             }
         } else {
-            auditTrail.push(`&nbsp; Relative Formation Style verified.`);
+            auditTrail.push(`&nbsp; Final Formation Layout matches.`);
         }
 
-        // 4. Verify Post-Maneuver Guide Designation
         if (userGuide !== currentTask.expectGuide) {
             pass = false;
-            auditTrail.push(`❌ <b>Guide Assignment Deviation:</b> Post-maneuver tactical guide remains Ship ${currentTask.expectGuide}.`);
+            auditTrail.push(`❌ <b>Guide Predictor:</b> Post-maneuver tactical guide remains Ship ${currentTask.expectGuide}.`);
         } else {
-            auditTrail.push(`&nbsp; Operational Guide verified.`);
+            auditTrail.push(`&nbsp; Operational Guide tracking verified.`);
         }
 
         totalAttempts++;
         if (pass) successfulAttempts++;
         
-        showModal(pass ? "Maneuver Verified" : "Maneuver Deficiencies Identified", pass ? "Solutions comply with ATP-01 Vol II signaling specifications." : "Review tactical review panel diagnostics below.");
+        activePhase = 'review';
+        phaseIndicator.textContent = "Step 3: Review Logs";
+        phaseIndicator.className = "phase-indicator";
+
+        showModal(pass ? "Maneuver Flawlessly Solved" : "Tactical Discrepancy Flagged", pass ? "Both initial plotting configuration and predicted maneuvers were perfectly resolved." : "Check tactical logging feedback pane below for diagnostic corrections.");
 
         scoreDisplay.textContent = `SCORE: ${successfulAttempts}/${totalAttempts}`;
         feedbackBox.className = "feedback-box " + (pass ? "pass" : "fail");
-        feedbackBox.innerHTML = `<b>TACTICAL AUDIT DIALOG:</b><br><br>` + auditTrail.join("<br>");
+        feedbackBox.innerHTML = `<b>TACTICAL AUDIT ANALYSIS LOGS:</b><br><br>` + auditTrail.join("<br>") + `<br><br><span style="color: var(--primary)">* Correct ship target solutions are shown in <b>solid green hulls</b> on the board. Your prediction is drawn in <b>dashed purple lines</b>.</span>`;
         feedbackBox.style.display = "block";
 
-        // Redraw into final vector outcomes based on maneuver rules
-        let spacing = 45;
-        let rad = (currentTask.expectHead - 90) * Math.PI / 180;
-        let sorted = [...plottedShips].sort((a,b) => a.id - b.id);
-
-        sorted.forEach((ship, idx) => {
-            ship.heading = currentTask.expectHead;
-            if (idx > 0) {
-                let offset = (currentTask.expectForm === 'abreast') ? Math.PI / 2 : 0;
-                ship.x = sorted[0].x + Math.cos(rad + offset) * (idx * spacing);
-                ship.y = sorted[0].y + Math.sin(rad + offset) * (idx * spacing);
-            }
-        });
-        plottedShips = sorted;
         renderPlotter();
+        updatePlotterStatus();
 
         submitBtn.style.display = "none";
         nextBtn.style.display = "block";
     });
 
+    nextBtn.addEventListener('click', generateScenario);
+    window.onload = generateScenario;
+</script>
+
+</body>
+</html>
     nextBtn.addEventListener('click', generateScenario);
     window.onload = generateScenario;
 </script>
