@@ -529,18 +529,43 @@
 
     // Core ATP-01 Maneuver Dataset
     const testDirectives = [
+        // --- 1. COLUMN START DIRECTIVES (Group A: Heading 000°/North) ---
         { type: 'TURN', label: 'TURN STBD 090', initForm: 'column', initHead: 0, expectHead: 90, expectForm: 'abreast', expectGuide: 1 },
-        { type: 'TURN', label: 'TURN PORT 090', initForm: 'column', initHead: 180, expectHead: 90, expectForm: 'abreast', expectGuide: 1 },
-        { type: 'TURN', label: 'TURN PORT 045', initForm: 'column', initHead: 0, expectHead: 315, expectForm: 'column', expectGuide: 1 },
-        { type: 'TURN', label: 'TURN 180', initForm: 'column', initHead: 90, expectHead: 270, expectForm: 'column', expectGuide: 1 },
-        { type: 'CORPEN', label: 'CORPEN PORT 270', initForm: 'column', initHead: 0, expectHead: 270, expectForm: 'column', expectGuide: 1 },
-        { type: 'CORPEN', label: 'CORPEN STBD 045', initForm: 'column', initHead: 0, expectHead: 45, expectForm: 'column', expectGuide: 1 },
-        { type: 'CORPEN', label: 'CORPEN PORT 180', initForm: 'abreast', initHead: 90, expectHead: 270, expectForm: 'abreast', expectGuide: 1 },
-        { type: 'CORPEN', label: 'CORPEN STBD 4ANS', initForm: 'column', initHead: 90, expectHead: 130, expectForm: 'column', expectGuide: 1 },
-        { type: 'CORPEN', label: 'CORPEN STBD 1ANS', initForm: 'abreast', initHead: 0, expectHead: 10, expectForm: 'abreast', expectGuide: 1 },
+        { type: 'TURN', label: 'TURN PORT 090', initForm: 'column', initHead: 0, expectHead: 270, expectForm: 'abreast', expectGuide: 1 },
+        { type: 'TURN', label: 'TURN STBD 45', initForm: 'column', initHead: 0, expectHead: 45, expectForm: 'column', expectGuide: 1 },
+        { type: 'CORPEN', label: 'CORPEN STBD 090', initForm: 'column', initHead: 0, expectHead: 90, expectForm: 'column', expectGuide: 1 },
+        { type: 'CORPEN', label: 'CORPEN PORT 045', initForm: 'column', initHead: 0, expectHead: 315, expectForm: 'column', expectGuide: 1 },
+        { type: 'CORPEN', label: 'CORPEN PORT 4ANS', initForm: 'column', initHead: 0, expectHead: 320, expectForm: 'column', expectGuide: 1 },
+        { type: 'CORPEN', label: 'CORPEN STBD 1ANS', initForm: 'column', initHead: 0, expectHead: 10, expectForm: 'column', expectGuide: 1 },
+        { type: 'FORM', label: 'FORM 090', initForm: 'column', initHead: 0, expectHead: 0, expectForm: 'abreast', expectGuide: 1 },
+        { type: 'FORM', label: 'FORM 180', initForm: 'column', initHead: 0, expectHead: 0, expectForm: 'column', expectGuide: 1 },
+
+        // --- 2. COLUMN START DIRECTIVES (Group B: Heading 090°/East) ---
+        { type: 'TURN', label: 'TURN PORT 090', initForm: 'column', initHead: 90, expectHead: 0, expectForm: 'abreast', expectGuide: 1 },
+        { type: 'TURN', label: 'TURN STBD 180', initForm: 'column', initHead: 90, expectHead: 270, expectForm: 'column', expectGuide: 1 },
+        { type: 'TURN', label: 'TURN STBD 9ANS', initForm: 'column', initHead: 90, expectHead: 180, expectForm: 'abreast', expectGuide: 1 },
+        { type: 'CORPEN', label: 'CORPEN STBD 180', initForm: 'column', initHead: 90, expectHead: 180, expectForm: 'column', expectGuide: 1 },
+        { type: 'CORPEN', label: 'CORPEN PORT 4ANS', initForm: 'column', initHead: 90, expectHead: 50, expectForm: 'column', expectGuide: 1 },
         { type: 'FORM', label: 'FORM 180', initForm: 'column', initHead: 90, expectHead: 90, expectForm: 'abreast', expectGuide: 1 },
-        { type: 'FORM', label: 'FORM 090', initForm: 'abreast', initHead: 90, expectHead: 90, expectForm: 'column', expectGuide: 1 }
-    ];
+        { type: 'FORM', label: 'FORM 270', initForm: 'column', initHead: 90, expectHead: 90, expectForm: 'column', expectGuide: 1 },
+
+        // --- 3. COLUMN START DIRECTIVES (Group C: Heading 180°/South) ---
+        { type: 'TURN', label: 'TURN STBD 090', initForm: 'column', initHead: 180, expectHead: 270, expectForm: 'abreast', expectGuide: 1 },
+        { type: 'TURN', label: 'TURN PORT 270', initForm: 'column', initHead: 180, expectHead: 90, expectForm: 'abreast', expectGuide: 1 },
+        { type: 'CORPEN', label: 'CORPEN PORT 135', initForm: 'column', initHead: 180, expectHead: 135, expectForm: 'column', expectGuide: 1 },
+        { type: 'CORPEN', label: 'CORPEN STBD 225', initForm: 'column', initHead: 180, expectHead: 225, expectForm: 'column', expectGuide: 1 },
+        { type: 'CORPEN', label: 'CORPEN PORT 1ANS', initForm: 'column', initHead: 180, expectHead: 170, expectForm: 'column', expectGuide: 1 },
+        { type: 'FORM', label: 'FORM 270', initForm: 'column', initHead: 180, expectHead: 180, expectForm: 'abreast', expectGuide: 1 },
+
+        // --- 4. LINE ABREAST START DIRECTIVES (Group D: Variable Headings) ---
+        { type: 'TURN', label: 'TURN STBD 090', initForm: 'abreast', initHead: 0, expectHead: 90, expectForm: 'column', expectGuide: 1 },
+        { type: 'TURN', label: 'TURN PORT 090', initForm: 'abreast', initHead: 90, expectHead: 0, expectForm: 'column', expectGuide: 1 },
+        { type: 'CORPEN', label: 'CORPEN STBD 180', initForm: 'abreast', initHead: 90, expectHead: 180, expectForm: 'abreast', expectGuide: 1 },
+        { type: 'CORPEN', label: 'CORPEN PORT 090', initForm: 'abreast', initHead: 180, expectHead: 90, expectForm: 'abreast', expectGuide: 1 },
+        { type: 'CORPEN', label: 'CORPEN PORT 4ANS', initForm: 'abreast', initHead: 270, expectHead: 230, expectForm: 'abreast', expectGuide: 1 },
+        { type: 'CORPEN', label: 'CORPEN STBD 1ANS', initForm: 'abreast', initHead: 180, expectHead: 190, expectForm: 'abreast', expectGuide: 1 },
+        { type: 'FORM', label: 'FORM 090', initForm: 'abreast', initHead: 0, expectHead: 0, expectForm: 'column', expectGuide: 1 },
+        { type: 'FORM', label: 'FORM 180', initForm: 'abreast', initHead: 90, expectHead: 90, expectForm: 'column', expectGuide: 1 }];
 
     overrideToggle.addEventListener('change', () => {
         if (overrideToggle.checked) {
